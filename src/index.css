@@ -11,3 +11,9 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.play-pause {
+  margin-left: 5px;
+  width: 10px;
+  aspect-ratio: 1/1;
+}
