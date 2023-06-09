@@ -1,10 +1,10 @@
 import React from 'react';
-import Timer from '../components/Timer';
+import TimeControl from '../components/TimeControl';
 
 export default function SudokuGame() {
    return(
       <div className="game">
-         <Timer/>
+         <TimeControl/>
       </div>
    )
 }
