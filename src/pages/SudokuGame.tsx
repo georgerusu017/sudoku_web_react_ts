@@ -2,9 +2,20 @@ import React from 'react';
 import TimeControl from '../components/TimeControl';
 
 export default function SudokuGame() {
+   
+   function resumeTimer(){
+      console.log("test")
+   }
+
+   function handleNumber(){
+      console.log("Handle test")
+      resumeTimer()
+   }
+
    return(
       <div className="game">
-         <TimeControl/>
+         <TimeControl onResume={resumeTimer}/> 
+         <button onClick={handleNumber}>1</button>
       </div>
    )
 }
