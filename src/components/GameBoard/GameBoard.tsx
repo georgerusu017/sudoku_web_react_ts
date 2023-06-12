@@ -1,3 +1,4 @@
+import Square from "../Square/Square";
 
 
 export default function GameBoard() {
@@ -31,19 +32,15 @@ export default function GameBoard() {
     //     }
     // }
 
-    const divs = [];
+    const elements = [];
 
     for (let i = 0; i < 9; i++) {
-        divs.push(<div className="square"></div>)
-        for (let j = 0; j < 9; j++){
-            // divs[i].appendChild() ?
-        }
+        elements.push(<Square></Square>)
     }
 
     return (
         <div className="game-board">
-            {divs}
+            {elements}
         </div>
     )
-
 }
