@@ -38,17 +38,21 @@ export default function TimeControl({ onResume }: TimeControlProps) {
    }, [now, startTime])
 
    const timeFormatted = useMemo(() => {
-      if (timePassed < 10) {
-         return `00:0${timePassed.toFixed(0)}`
-      }
-      if (timePassed < 60) {
-         return `00:${timePassed.toFixed(0)}`
-      }
+
       if (timePassed < 3600) {
          if (Math.floor(timePassed / 60) < 10) {
-            return `0${Math.floor(timePassed / 60)}:${(timePassed % 60).toFixed(0)}`
+            if ((timePassed % 60) < 10) {
+               return `0${Math.floor(timePassed / 60)}:0${(timePassed % 60).toFixed(0)}`
+            }
+            else return `0${Math.floor(timePassed / 60)}:${(timePassed % 60).toFixed(0)}`
          }
-         else return `${Math.floor(timePassed / 60)}:${(timePassed % 60).toFixed(0)}`
+
+         if (Math.floor(timePassed / 60) < 60){
+            if ((timePassed % 60) < 10) {
+               return `${Math.floor(timePassed / 60)}:0${(timePassed % 60).toFixed(0)}`
+            }
+            else return `${Math.floor(timePassed / 60)}:${(timePassed % 60).toFixed(0)}`
+         }
       }
       else return `Time Out`;
    }, [timePassed])

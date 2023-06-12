@@ -1,5 +1,7 @@
 import React from 'react';
-import TimeControl from '../components/TimeControl';
+import TimeControl from '../components/TimeControl/TimeControl';
+import GameBoard from '../components/GameBoard/GameBoard';
+import ControlBoard from '../components/ControlBoard/ControlBoard';
 
 export default function SudokuGame() {
    
@@ -7,15 +9,16 @@ export default function SudokuGame() {
       console.log("test")
    }
 
-   function handleNumber(){
-      console.log("Handle test")
-      resumeTimer()
-   }
+   // function handleNumber(){
+   //    console.log("Handle test")
+   //    resumeTimer()
+   // }
 
    return(
       <div className="sudoku-game">
          <TimeControl onResume={resumeTimer}/> 
-         <button onClick={handleNumber}>1</button>
+         <GameBoard/>
+         <ControlBoard/>
       </div>
    )
 }
