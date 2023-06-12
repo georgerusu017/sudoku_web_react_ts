@@ -13,7 +13,7 @@ export default function SudokuGame() {
    }
 
    return(
-      <div className="game">
+      <div className="sudoku-game">
          <TimeControl onResume={resumeTimer}/> 
          <button onClick={handleNumber}>1</button>
       </div>
