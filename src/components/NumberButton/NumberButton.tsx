@@ -1,4 +1,4 @@
-
+import "../NumberButton/NumberButton.css"
 
 export default function NumberButton(){
     return(

@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+// import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import "../TimeControl/TimeControl.css"
 
 interface TimeControlProps {
    onResume(): void
@@ -71,11 +72,12 @@ export default function TimeControl({ onResume }: TimeControlProps) {
 
 
    return (
-      <div className='timer-control'>
+      <div className='time-control'>
          {/* <button className='play-pause' onClick={handleStop}> Stop </button>
          <button className='play-pause' onClick={handleResume}> Resume </button> */}
          {/* <p>Time passed: {timePassed.toFixed(2)}</p> */}
          {/* <p>Time passed: {timeFormatted}</p> */}
+         00:00
       </div>
    )
 }

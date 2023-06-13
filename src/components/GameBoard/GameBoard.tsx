@@ -1,4 +1,5 @@
 import Square from "../Square/Square";
+import "../GameBoard/GameBoard.css"
 
 
 export default function GameBoard() {

@@ -1,4 +1,5 @@
 import Cell from "../Cell/Cell";
+import "../Square/Square.css"
 
 export default function Square(){
     const elements = [];

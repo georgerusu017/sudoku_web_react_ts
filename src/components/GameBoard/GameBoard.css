@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+.game-board {
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr; */
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: aliceblue;
+    border-style: solid;
+    border-width: 0.5px;
+    position: relative;
+    
+}
