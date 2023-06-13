@@ -13,16 +13,23 @@ export default function ControlBoard() {
     return (
         <div className="control-board">
             <div className="control-buttons">
-                <button className="control-button"></button>
-                <button className="control-button"></button>
-                <button className="control-button"></button>
+                <div className="control-div">
+                    <button className="control-button"></button>
+                </div>
+                <div className="control-div">
+                    <button className="control-button"></button>
+                </div>
+                <div className="control-div">
+                    <button className="control-button"></button>
+                </div>
             </div>
             <div className="number-buttons">
                 {numberButtons}
+                <div className="new-game-button">
+                    New Game
+                </div>
             </div>
-            <div className="new-game-button">
-                New Game
-            </div>
+
         </div>
     )
 

@@ -1,3 +1,18 @@
+.control-board {
+    max-width: 390px;
+    width: 100%;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.control-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 .new-game-button {
     max-width: 380px;
     width: 90%;
@@ -8,9 +23,21 @@
     border-radius: 5px;
     background-color: #0072e3;
     color: white;
+    text-align: center;
 }
 
-.number_button {
+.new-game-button:hover {
+    background-color: #0050a0;
+    transition: 0.5s;
+}
+
+.number-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.number-button {
     width: 110px;
     height: 70px;
     border-radius: 5px;
@@ -22,12 +49,17 @@
     /* font-family: Source Sans Pro,sans-serif; */
 }
 
-.number_button:hover {
+.number-button:hover {
     background-color: rgb(213, 215, 220);
     transition: 0.2s;
 }
 
-.control_button {
+.control-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.control-button {
     width: 60px;
     height: 60px;
     border-radius: 100%;
@@ -38,7 +70,7 @@
     color: #0072e3;
 }
 
-.round_button:hover {
+.round-button:hover {
     background-color: rgb(213, 215, 220);
     transition: 0.2s;
 }

@@ -1,0 +1,13 @@
+.sudoku-game {
+    height: auto;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.timer-game {
+    max-width: 400px;
+    width: 100%;
+}
