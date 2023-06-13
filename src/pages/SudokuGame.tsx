@@ -15,6 +15,8 @@ export default function SudokuGame() {
    //    resumeTimer()
    // }
 
+   // generare sudoku puzzle
+
    return (
       <div className="sudoku-game">
          <div className='timer-game'>
@@ -25,3 +27,4 @@ export default function SudokuGame() {
       </div>
    )
 }
+
