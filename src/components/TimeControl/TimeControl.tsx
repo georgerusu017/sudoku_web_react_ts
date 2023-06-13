@@ -77,7 +77,10 @@ export default function TimeControl({ onResume }: TimeControlProps) {
          <button className='play-pause' onClick={handleResume}> Resume </button> */}
          {/* <p>Time passed: {timePassed.toFixed(2)}</p> */}
          {/* <p>Time passed: {timeFormatted}</p> */}
+         
          00:00
+
+         <button className="pause-button"></button>
       </div>
    )
 }
