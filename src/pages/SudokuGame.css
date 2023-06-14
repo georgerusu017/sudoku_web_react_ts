@@ -14,13 +14,12 @@
 }
 
 @media only screen and (max-width: 900px) {
-    #game {
+    .sudoku-game {
       flex-direction: column;
     }
-  
-    #app {
+    /* #app {
       flex-direction: column;
-    }
+    } */
   
     /* #table-timer{
       width: 100%;
@@ -31,30 +30,15 @@
       align-content: normal;
     }
   
-    #timer-control {
+    .time-control {
       width: 100%;
       margin: 10px auto;
       justify-content: flex-end;
     }
-  
-    .number_buttons {
-      max-width: 25px;
-      max-height: 30px;
-      aspect-ratio: 1/1;
-      border-width: 0px;
-      font-size: 30px;
-      color: #0072e3;
-      background-color: transparent;
-      margin-top: 20px;
-    }
-  
-    .number_buttons:hover {
-      background-color: transparent;
-    }
   }
   
   @media only screen and (max-width: 400px){
-    .number_buttons {
+    .number_button {
       font-size: 20px;
     }
     .cell {

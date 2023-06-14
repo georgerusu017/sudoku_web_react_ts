@@ -3,8 +3,8 @@ type NumberButtonProps = { value: number }
 
 export default function NumberButton( {value} : NumberButtonProps ){
     return(
-        <div className="number-button">
-            {/* {value} */}
-        </div>
+        <button className="number-button">
+            {value}
+        </button>
      )
 }

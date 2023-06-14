@@ -7,7 +7,7 @@
     flex-direction: column;
 }
 
-.control-buttons {
+.control-buttons-board {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -72,4 +72,65 @@
 .round-button:hover {
     background-color: rgb(213, 215, 220);
     transition: 0.2s;
+}
+
+#undo-button {
+    background-image: url(/public/images/undo.png);
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#erase-button {
+    background-image: url(/public/images/eraser.png);
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#notes-button {
+    background-image: url(/public/images/pencil.png);
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#notesToggle {
+    height: 20px;
+    width: 30px;
+    border-radius: 40%;
+    border-width: 0px;
+    background-color: rgb(160, 162, 168);
+    color: rgb(244, 245, 248);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* Find the position settings */
+    /* position: absolute;
+    top: -10px;
+    right: -5px; */
+}
+
+@media only screen and (max-width: 900px) {
+
+    .number-button {
+        max-width: 25px;
+        max-height: 30px;
+        aspect-ratio: 1/1;
+        border-width: 0px;
+        font-size: 30px;
+        color: #0072e3;
+        background-color: transparent;
+        margin-top: 20px;
+    }
+
+    .number-button:hover {
+        background-color: transparent;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .number-button {
+        font-size: 20px;
+    }
 }

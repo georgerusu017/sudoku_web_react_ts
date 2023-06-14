@@ -4,39 +4,35 @@ import "../ControlBoard/ControlBoard.css"
 
 export default function ControlBoard() {
 
-    const numberButtons = []
-    for (let i = 0; i < 9; i++) {
-        // value din map, line 29
-        numberButtons.push(<NumberButton value={1}></NumberButton>)
-    }
-
-    // array 1-9 
+    const numberButtons = Array.from({ length: 9 }, (_, index) => index + 1)
 
     return (
         <div className="control-board">
-            <div className="control-buttons">
+            <div className="control-buttons-board">
                 <div className="control-div">
-                    <button className="control-button"></button>
-                    <label>?</label>
+                    <button className="control-button" id="undo-button"></button>
+                    <label>Undo</label>
                 </div>
                 <div className="control-div">
-                    <button className="control-button"></button>
-                    <label>?</label>
+                    <button className="control-button" id="erase-button"></button>
+                    <label>Erase</label>
                 </div>
                 <div className="control-div">
-                    <button className="control-button"></button>
-                    <label>?</label>
+                    <button className="control-button" id="notes-button">
+                        <div id="notesToggle">OFF</div>
+                    </button>
+                    <label>Notes</label>
                 </div>
             </div>
             <div className="number-buttons">
-                {/* map  value din map 1-9*/}
-                {numberButtons}
-                <div className="new-game-button">
+                {numberButtons.map((number) => (
+                    <NumberButton key={number} value={number} />
+                ))}
+                <button className="new-game-button">
                     New Game
-                </div>
+                </button>
             </div>
 
         </div>
     )
-
 }
