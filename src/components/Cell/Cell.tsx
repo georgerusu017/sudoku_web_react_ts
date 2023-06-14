@@ -1,9 +1,18 @@
+import { useState } from 'react'
 import '../Cell/Cell.css'
-
-export default function Cell(){
-    return(
-        <div className="cell">
-        </div>
-     )
+type CellProps = {
+    id: string ,
+    value: number
 }
 
+export default function Cell({ id, value }: CellProps) {
+
+    const [cellId, setId] = useState(id);
+    const [cellValue, setValue] = useState(value);
+
+    return (
+        <div className="cell" id={cellId}>
+            {cellValue}
+        </div>
+    )
+}
