@@ -35,15 +35,16 @@ export default function GameBoard() {
     //     }
     
     // }
-    const elements = [];
 
-    for (let i = 1; i < 10; i++) {
-        elements.push(<Square key={`square-key-${i}`} id={`square-${i}`}></Square>)
-    }
+    
+
+    const squares = Array.from({ length: 9 }, (_, index) => index + 1)
 
     return (
         <div className="game-board">
-            {elements}
+            {squares.map((number) => (
+                    <Square key={`cell-${number}`} id={`cell-${number}`}/>
+                ))}
         </div>
     )
     

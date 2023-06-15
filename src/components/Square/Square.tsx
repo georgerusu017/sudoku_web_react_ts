@@ -10,9 +10,6 @@ export default function Square({id} : SquareProps){
     const elements = [];
     const [squareId] = useState(id);
 
-    for (let i = 1; i < 10; i++) {
-        elements.push(<Cell value={i} id={`cell-${i}`}></Cell>)
-    }
     const cells = Array.from({ length: 9 }, (_, index) => index + 1)
 
 

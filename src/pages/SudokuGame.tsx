@@ -11,14 +11,10 @@ export default function SudokuGame() {
       console.log("test")
    }
 
-   // function handleNumber(){
-   //    console.log("Handle test")
-   //    resumeTimer()
-   // }
-
+   // generare sudoku puzzle
    const sudoku = getSudoku('expert');
    console.log("sudoku puzzle = ", sudoku.puzzle)
-   // generare sudoku puzzle
+
 
    return (
       <div className="sudoku-game">
