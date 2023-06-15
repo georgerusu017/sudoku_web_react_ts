@@ -7,7 +7,7 @@ type CellProps = {
 
 export default function Cell({ id, value }: CellProps) {
 
-    const [cellId, setId] = useState(id);
+    const [cellId] = useState(id);
     const [cellValue, setValue] = useState(value);
 
     return (

@@ -26,7 +26,7 @@ export default function ControlBoard() {
             </div>
             <div className="number-buttons">
                 {numberButtons.map((number) => (
-                    <NumberButton value={number} />
+                    <NumberButton key={`number-button${number}`} value={number} />
                 ))}
                 <button className="new-game-button">
                     New Game
