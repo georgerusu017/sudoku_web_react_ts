@@ -1,6 +1,6 @@
 import Square from "../Square/Square";
 import "../GameBoard/GameBoard.css"
-import { getSudoku } from 'sudoku-gen';
+
 
 
 export default function GameBoard() {
@@ -35,9 +35,6 @@ export default function GameBoard() {
     //     }
     
     // }
-
-    const sudoku = getSudoku('expert');
-    console.log("sudoku puzzle = ", sudoku.puzzle)
     const elements = [];
 
     for (let i = 1; i < 10; i++) {

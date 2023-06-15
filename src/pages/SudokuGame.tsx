@@ -2,6 +2,7 @@ import React from 'react';
 import TimeControl from '../components/TimeControl/TimeControl';
 import GameBoard from '../components/GameBoard/GameBoard';
 import ControlBoard from '../components/ControlBoard/ControlBoard';
+import { getSudoku } from 'sudoku-gen';
 import "../pages/SudokuGame.css"
 
 export default function SudokuGame() {
@@ -15,6 +16,8 @@ export default function SudokuGame() {
    //    resumeTimer()
    // }
 
+   const sudoku = getSudoku('expert');
+   console.log("sudoku puzzle = ", sudoku.puzzle)
    // generare sudoku puzzle
 
    return (
