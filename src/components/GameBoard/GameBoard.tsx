@@ -40,11 +40,14 @@ export default function GameBoard() {
 
 
     const squares = Array.from({ length: 9 }, (_, index) => index + 1)
+
     const sudokuPuzzle = getSudoku('easy').puzzle.split('');
-    const sudokuThirds = []
+    const sudokuThirds = [];
     const squareValues = [];
 
     // const [cellValue, setValue] = useState();
+
+    // services separate
 
     function splitArrayIntoThirds(array: string[]) {
         const third = Math.floor(array.length / 3);
@@ -79,6 +82,8 @@ export default function GameBoard() {
     for (let i = 0; i < 3; i++) {
         squareValues.push(...splitArrayIntoThirds(arrangeSquaresValues(sudokuThirds[i])))
     }
+
+    // up until here
 
     console.log("sudoku-gird = ", sudokuPuzzle)
     console.log("square values = ", squareValues)

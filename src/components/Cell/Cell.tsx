@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import '../Cell/Cell.css'
 type CellProps = {
     id: string ,
