@@ -3,6 +3,7 @@ import Cell from "../Cell/Cell";
 import "../Square/Square.css"
 type SquareProps = {
     id: string
+    squareValues: any
 }
 
 export default function Square({id} : SquareProps){
