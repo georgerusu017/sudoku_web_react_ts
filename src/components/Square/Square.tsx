@@ -12,7 +12,6 @@ export default function Square({id} : SquareProps){
 
     const cells = Array.from({ length: 9 }, (_, index) => index + 1)
 
-
     return(
         <div className="square" id={squareId}>
             {cells.map((number) => (

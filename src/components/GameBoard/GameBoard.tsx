@@ -1,6 +1,8 @@
 import Square from "../Square/Square";
 import "../GameBoard/GameBoard.css"
-
+import { useState } from "react";
+import { getSudoku } from 'sudoku-gen';
+import { log } from "console";
 
 
 export default function GameBoard() {
@@ -36,9 +38,19 @@ export default function GameBoard() {
     
     // }
 
+    const squares = Array.from({ length: 9 }, (_, index) => index + 1)
+    const sudokuPuzzle = getSudoku('expert').puzzle;
+    console.log(typeof sudokuPuzzle);
+    console.log(sudokuPuzzle.split(''));
+    sudokuPuzzle.split('')
     
 
-    const squares = Array.from({ length: 9 }, (_, index) => index + 1)
+    console.log("sudoku-gird = ", sudokuPuzzle)
+
+    const [cellValue, setValue] = useState();
+    const [sudokuPuzzleState] = useState(sudokuPuzzle)
+
+    
 
     return (
         <div className="game-board">
