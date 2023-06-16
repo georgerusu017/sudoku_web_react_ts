@@ -3,22 +3,27 @@ import Cell from "../Cell/Cell";
 import "../Square/Square.css"
 type SquareProps = {
     id: string
-    squareValues: any
+    cellIds: string[],
+    squareValues: string[],
     setSelectedCell(id: string): void
 }
 
-export default function Square({id, setSelectedCell} : SquareProps){
+export default function Square({ id, squareValues, cellIds, setSelectedCell }: SquareProps) {
 
-    const elements = [];
     const [squareId] = useState(id);
 
-    const cells = Array.from({ length: 9 }, (_, index) => index + 1)
-
-    return(
+    return (
         <div className="square" id={squareId}>
-            {cells.map((number) => (
-                    <Cell key={`cell-${number}`} id={`cell-${number}`} value={number} setSelectedCell={setSelectedCell} />
-                ))}
+            {
+                squareValues.map((value, index) => (
+                    <Cell
+                        key={`cell-${index}`}
+                        id={`cell-${cellIds[index]}`}
+                        value={value}
+                        setSelectedCell={setSelectedCell}
+                    />
+                ))
+            }
         </div>
-     )
+    )
 }

@@ -2,7 +2,7 @@ import { MouseEvent, useCallback, useState } from 'react'
 import '../Cell/Cell.css'
 type CellProps = {
     id: string ,
-    value: number,
+    value: string,
     setSelectedCell(id: string): void
 }
 

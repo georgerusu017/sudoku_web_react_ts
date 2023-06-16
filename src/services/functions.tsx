@@ -26,7 +26,7 @@ function arrangeSquaresValues(array: string[]) {
     return insideSections
 }
 
-export function createSquareValuesFromPuzzle(puzzle : string[]) {
+export function arrangePuzzleContentForSquares(puzzle: string[]) {
 
     const sudokuThirds = [];
     const squareValues = [];
