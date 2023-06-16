@@ -3,7 +3,7 @@ import '../Cell/Cell.css'
 type CellProps = {
     id: string ,
     value: string,
-    setSelectedCell(id: string): void
+    setSelectedCell(id: string): void,
 }
 
 export default function Cell({ id, value, setSelectedCell }: CellProps) {

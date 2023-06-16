@@ -1,5 +1,4 @@
 
-
 function splitArrayIntoThirds(array: string[]) {
     const third = Math.floor(array.length / 3);
     const firstThird = array.slice(0, third);

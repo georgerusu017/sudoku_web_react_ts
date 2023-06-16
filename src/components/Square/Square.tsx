@@ -2,10 +2,10 @@ import { useState } from "react";
 import Cell from "../Cell/Cell";
 import "../Square/Square.css"
 type SquareProps = {
-    id: string
+    id: string,
     cellIds: string[],
     squareValues: string[],
-    setSelectedCell(id: string): void
+    setSelectedCell(id: string): void,
 }
 
 export default function Square({ id, squareValues, cellIds, setSelectedCell }: SquareProps) {

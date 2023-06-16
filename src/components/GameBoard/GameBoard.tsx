@@ -1,6 +1,6 @@
 import Square from "../Square/Square";
 import "../GameBoard/GameBoard.css"
-import { arrangePuzzleContentForSquares } from "../../services/functions";
+import { arrangePuzzleContentForSquares } from "../../services/functions.service";
 import { useCallback, useState } from "react";
 import { getSudoku } from 'sudoku-gen';
 
