@@ -4,9 +4,10 @@ import "../Square/Square.css"
 type SquareProps = {
     id: string
     squareValues: any
+    setSelectedCell(id: string): void
 }
 
-export default function Square({id} : SquareProps){
+export default function Square({id, setSelectedCell} : SquareProps){
 
     const elements = [];
     const [squareId] = useState(id);
@@ -16,9 +17,8 @@ export default function Square({id} : SquareProps){
     return(
         <div className="square" id={squareId}>
             {cells.map((number) => (
-                    <Cell key={`cell-${number}`} id={`cell-${number}`} value={number} />
+                    <Cell key={`cell-${number}`} id={`cell-${number}`} value={number} setSelectedCell={setSelectedCell} />
                 ))}
         </div>
      )
-
 }
