@@ -1,4 +1,4 @@
-import { MouseEvent, useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import '../Cell/Cell.css'
 type CellProps = {
     id: string ,
@@ -11,12 +11,14 @@ export default function Cell({ id, value, onSelectCell }: CellProps) {
     const [cellId] = useState(id);
     const [cellValue] = useState(value);
 
+    const className = ''
+
     const handleClick = useCallback(() => {
         onSelectCell(id)
     },[id,onSelectCell])
 
     return (
-        <div className={`cell `} id={cellId} onClick={handleClick}>
+        <div className={className} id={cellId} onClick={handleClick}>
             {cellValue}
         </div>
     )
