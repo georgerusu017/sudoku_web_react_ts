@@ -13,7 +13,7 @@ export default function GameBoard() {
     const squareValues = [...arrangePuzzleContentForSquares(sudokuPuzzle)];
     const sudokuIdsArranged = [...arrangePuzzleContentForSquares(sudokuValuesId)]
 
-    const handleSelectedCell = useCallback((id: string) => {
+    const onSelectCell = useCallback((id: string) => {
         console.log("in gameBoard", id);
     }, [])
 
@@ -26,7 +26,7 @@ export default function GameBoard() {
                         id={`square-${index}`}
                         squareValues={value}
                         cellIds={sudokuIdsArranged[index]}
-                        setSelectedCell={handleSelectedCell}
+                        onSelectCell={onSelectCell}
                     />
                 ))
             }

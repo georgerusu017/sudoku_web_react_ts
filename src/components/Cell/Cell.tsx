@@ -3,21 +3,20 @@ import '../Cell/Cell.css'
 type CellProps = {
     id: string ,
     value: string,
-    setSelectedCell(id: string): void,
+    onSelectCell(id: string): void,
 }
 
-export default function Cell({ id, value, setSelectedCell }: CellProps) {
+export default function Cell({ id, value, onSelectCell }: CellProps) {
 
     const [cellId] = useState(id);
-    const [cellValue, setValue] = useState(value);
+    const [cellValue] = useState(value);
 
-    const handleSelection = useCallback((e:MouseEvent<HTMLDivElement>) => {
-        setSelectedCell(id)
-        console.log(id);
-    },[id])
+    const handleClick = useCallback(() => {
+        onSelectCell(id)
+    },[id,onSelectCell])
 
     return (
-        <div className="cell" id={cellId} onClick={handleSelection}>
+        <div className={`cell `} id={cellId} onClick={handleClick}>
             {cellValue}
         </div>
     )

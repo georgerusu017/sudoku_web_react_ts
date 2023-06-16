@@ -5,10 +5,10 @@ type SquareProps = {
     id: string,
     cellIds: string[],
     squareValues: string[],
-    setSelectedCell(id: string): void,
+    onSelectCell(id: string): void,
 }
 
-export default function Square({ id, squareValues, cellIds, setSelectedCell }: SquareProps) {
+export default function Square({ id, squareValues, cellIds, onSelectCell }: SquareProps) {
 
     const [squareId] = useState(id);
 
@@ -20,7 +20,7 @@ export default function Square({ id, squareValues, cellIds, setSelectedCell }: S
                         key={`cell-${index}`}
                         id={`cell-${cellIds[index]}`}
                         value={value}
-                        setSelectedCell={setSelectedCell}
+                        onSelectCell={onSelectCell}
                     />
                 ))
             }
