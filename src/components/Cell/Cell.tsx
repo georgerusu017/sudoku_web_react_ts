@@ -1,25 +1,26 @@
 import { useCallback, useState } from 'react'
 import '../Cell/Cell.css'
+import { CellModel } from '../../models/Cell.model';
 type CellProps = {
-    id: string ,
-    value: string,
-    onSelectCell(id: string): void,
+    cell: CellModel,
+    onSelectCell(cell: CellModel): void,
 }
 
-export default function Cell({ id, value, onSelectCell }: CellProps) {
+export default function Cell({ cell, onSelectCell }: CellProps) {
 
-    const [cellId] = useState(id);
-    const [cellValue] = useState(value);
-
-    const className = ''
+    // const [cellId] = useState(id);
+    // const [cellValue] = useState(value);
+    const [className, setClassName] = useState(`cell`)
 
     const handleClick = useCallback(() => {
-        onSelectCell(id)
-    },[id,onSelectCell])
+        onSelectCell(cell)
+    }, [cell, onSelectCell])
 
     return (
-        <div className={className} id={cellId} onClick={handleClick}>
-            {cellValue}
+        <div className={`cell ` + className}
+            id={cell.id}
+            onClick={handleClick}>
+            {cell.value}
         </div>
     )
 }

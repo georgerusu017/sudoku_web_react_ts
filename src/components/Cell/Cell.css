@@ -1,13 +1,37 @@
 .cell {
-    aspect-ratio: 1/1;
-    height: 100%;
-    background-color: white;
-    border-style: solid;
-    border-color: lightgrey;
-    border-width: 0.5px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-    font-size: 25px;
-  }
+  aspect-ratio: 1/1;
+  height: 100%;
+  background-color: white;
+  border-style: solid;
+  border-color: lightgrey;
+  border-width: 0.5px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+}
+
+.highlight {
+  background-color: rgb(228, 235, 242);
+}
+
+.highlightTwin {
+  background-color: rgb(174, 201, 228);
+}
+
+.highlightInvalid {
+  background-color: rgb(241, 208, 214);
+}
+
+.isEditable {
+  color: rgb(48, 112, 219);
+}
+
+.highlightInvalid.isEditable {
+  color: rgb(213, 101, 111);
+}
+
+.highlightStrong {
+  background-color: rgb(194, 221, 248);
+}

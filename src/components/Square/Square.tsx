@@ -1,25 +1,22 @@
 import { useState } from "react";
 import Cell from "../Cell/Cell";
 import "../Square/Square.css"
+import { CellModel } from "../../models/Cell.model";
 type SquareProps = {
     id: string,
-    cellIds: string[],
-    squareValues: string[],
-    onSelectCell(id: string): void,
+    cells : CellModel[],
+    onSelectCell(cell: CellModel): void,
 }
 
-export default function Square({ id, squareValues, cellIds, onSelectCell }: SquareProps) {
-
-    const [squareId] = useState(id);
+export default function Square({ id, cells , onSelectCell }: SquareProps) {
 
     return (
-        <div className="square" id={squareId}>
+        <div className="square" id={id}>
             {
-                squareValues.map((value, index) => (
+                cells.map((cell, index) => (
                     <Cell
                         key={`cell-${index}`}
-                        id={`cell-${cellIds[index]}`}
-                        value={value}
+                        cell={cell}
                         onSelectCell={onSelectCell}
                     />
                 ))
