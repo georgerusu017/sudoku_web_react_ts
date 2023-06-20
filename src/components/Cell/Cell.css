@@ -16,7 +16,7 @@
   background-color: rgb(228, 235, 242);
 }
 
-.highlightTwin {
+.highlightSibling {
   background-color: rgb(174, 201, 228);
 }
 
@@ -32,6 +32,6 @@
   color: rgb(213, 101, 111);
 }
 
-.highlightStrong {
+.highlightSelected {
   background-color: rgb(194, 221, 248);
 }
