@@ -42,7 +42,8 @@ export default function GameBoard() {
             // notita 2: in cell avem si square id pe care nu stiu daca il folosesc??
         })
 
-        console.log(cell)
+        console.
+        log(cell)
         
         setSelectedCell(cell)
         setCells([...cells])
