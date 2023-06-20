@@ -1,7 +1,7 @@
 export interface Cell {
     value: string,
     id: number,
-    squareId: string,
+    squareId: number,
     isSelected: boolean,
     isHighlighted: boolean,
     isSibling: boolean,

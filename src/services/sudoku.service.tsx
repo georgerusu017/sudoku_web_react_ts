@@ -10,7 +10,7 @@ function splitArrayIntoThirds(array: Cell[]) {
     return [firstThird, secondThird, lastThird];
 }
 
-function groupInto3Squares(array: Cell[]): [Cell[], Cell[], Cell[]] {
+function groupInto3Squares(array: Cell[], squareLine: number): [Cell[], Cell[], Cell[]] {
 
     const threeGridLines = splitArrayIntoThirds(array)
     const threeSquares: [Cell[], Cell[], Cell[]] = [[], [], []];
@@ -19,6 +19,9 @@ function groupInto3Squares(array: Cell[]): [Cell[], Cell[], Cell[]] {
         const lineSections = splitArrayIntoThirds(threeGridLines[i])
         for (let j = 0; j < 3; j++) {
             threeSquares[j].push(...lineSections[j])
+            lineSections[j][0].squareId = 3*squareLine + j;
+            lineSections[j][1].squareId = 3*squareLine + j;
+            lineSections[j][2].squareId = 3*squareLine + j;
         }
     }
 
@@ -31,7 +34,7 @@ function arrangeCellsIntoSquares(puzzle: Cell[]): Cell[][] {
     const squareValues = [];
 
     for (let i = 0; i < 3; i++) {
-        squareValues.push(...groupInto3Squares(sudokuThirds[i]))
+        squareValues.push(...groupInto3Squares(sudokuThirds[i],i))
     }
 
     return squareValues
@@ -44,7 +47,7 @@ export function generateSudoku(): Cell[][] {
         .map<Cell>((element, index) => ({
             value: element === '-' ? '' : element,
             id: index,
-            squareId: '',
+            squareId: 99,
             isSelected: false,
             isHighlighted: false,
             isSibling: false,

@@ -10,11 +10,12 @@ export default function GameBoard() {
 
     //                    aici squares.flat(), much better with useMemo
     const [cells, setCells] = useState<Cell[][]>(generateSudoku)
-    
+
     // obiect cu key id much better with useMemo
     const [selectedCell, setSelectedCell] = useState<Cell>(cells[0][0])
 
-    // un useEffect pentru handleSelectCell cells[0][0]
+    // un useEffect pentru handleSelectCell cells[0][0]  
+    // notita 1: ar fi bine sa fie cumva controlat apelat, si anume sa fie simulat click-ul, selectia celulei 0 0
     selectedCell.isSelected = true
 
     const handleSelectCell = useCallback((cell: Cell) => {
@@ -37,8 +38,11 @@ export default function GameBoard() {
         })
 
         neighbors.forEach(id => {
-            // squareId din cell, foloseste-l
+            // squareId din cell, foloseste-l 
+            // notita 2: in cell avem si square id pe care nu stiu daca il folosesc??
         })
+
+        console.log(cell)
         
         setSelectedCell(cell)
         setCells([...cells])
