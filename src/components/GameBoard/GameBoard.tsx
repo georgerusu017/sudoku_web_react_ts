@@ -1,6 +1,6 @@
 import Square from "../Square/Square";
 import "../GameBoard/GameBoard.css"
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { generateSudoku } from "../../services/sudoku.service";
 import { Cell } from "../../models/Cell.model";
 import { findNeighbors } from "../../services/findNeighbors";
@@ -8,23 +8,26 @@ import { findNeighbors } from "../../services/findNeighbors";
 
 export default function GameBoard() {
 
-    const squares = generateSudoku()
-    const [cells, setCells] = useState<Cell[][]>(squares)
+    //                    aici squares.flat(), much better with useMemo
+    const [cells, setCells] = useState<Cell[][]>(generateSudoku)
+    
+    // obiect cu key id much better with useMemo
+    const [selectedCell, setSelectedCell] = useState<Cell>(cells[0][0])
 
-    const initialCells = cells[0][0];
-    const [selectedCell, setSelectedCell] = useState<Cell>(initialCells)
+    // un useEffect pentru handleSelectCell cells[0][0]
+    selectedCell.isSelected = true
 
-    const onSelectCell = useCallback((cell: Cell) => {
+    const handleSelectCell = useCallback((cell: Cell) => {
         let neighbors = findNeighbors(cell)
 
         cells.flat().forEach(squareCell => {
             if (squareCell.id === cell.id) {
                 squareCell.isSelected = true
-                setSelectedCell(squareCell)
             }
             else {
                 squareCell.isSelected = false
             }
+            
             if (squareCell.value !== '' && squareCell.value === cell.value) {
                 squareCell.isSibling = true;
             }
@@ -34,14 +37,13 @@ export default function GameBoard() {
         })
 
         neighbors.forEach(id => {
-            //
+            // squareId din cell, foloseste-l
         })
         
+        setSelectedCell(cell)
         setCells([...cells])
 
     }, [cells])
-
-    console.log(cells)
 
     return (
         <div className="game-board">
@@ -51,7 +53,7 @@ export default function GameBoard() {
                         key={`square-${index}`}
                         id={`square-${index}`}
                         cells={squareCells}
-                        onSelectCell={onSelectCell}
+                        onSelectCell={handleSelectCell}
                     />
                 ))
             }

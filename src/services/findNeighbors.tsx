@@ -1,6 +1,7 @@
 import { Cell } from "../models/Cell.model";
 
 function findSquareNeighbors() {
+    // ??
     // const div = document.getElementById(this.idText);
 
     // return [...div.parentNode.childNodes]
