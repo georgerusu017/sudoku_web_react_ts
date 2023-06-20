@@ -1,14 +1,13 @@
 import { useCallback, useState, useEffect } from 'react'
-import '../Cell/Cell.css'
-import { CellModel } from '../../models/Cell.model';
-import { selectCell } from '../../services/selectCell';
+import './Cell.css'
+import { Cell } from '../../models/Cell.model';
 import { getClassName } from '../../services/getClassName';
 type CellProps = {
-    cell: CellModel,
-    onSelectCell(cell: CellModel): void,
+    cell: Cell,
+    onSelectCell(cell: Cell): void,
 }
 
-export default function Cell({ cell, onSelectCell }: CellProps) {
+export default function CellComponent({ cell, onSelectCell }: CellProps) {
 
     const handleClick = useCallback(() => {
         onSelectCell(cell)

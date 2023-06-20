@@ -1,7 +1,7 @@
 import { getSudoku } from "sudoku-gen";
-import { CellModel } from "../models/Cell.model";
+import { Cell } from "../models/Cell.model";
 
-function splitArrayIntoThirds(array: CellModel[]) {
+function splitArrayIntoThirds(array: Cell[]) {
     const third = Math.floor(array.length / 3);
     const firstThird = array.slice(0, third);
     const secondThird = array.slice(third, third * 2);
@@ -10,10 +10,10 @@ function splitArrayIntoThirds(array: CellModel[]) {
     return [firstThird, secondThird, lastThird];
 }
 
-function groupInto3Squares(array: CellModel[]): [CellModel[], CellModel[], CellModel[]] {
+function groupInto3Squares(array: Cell[]): [Cell[], Cell[], Cell[]] {
 
     const threeGridLines = splitArrayIntoThirds(array)
-    const threeSquares: [CellModel[], CellModel[], CellModel[]] = [[], [], []];
+    const threeSquares: [Cell[], Cell[], Cell[]] = [[], [], []];
 
     for (let i = 0; i < 3; i++) {
         const lineSections = splitArrayIntoThirds(threeGridLines[i])
@@ -25,7 +25,7 @@ function groupInto3Squares(array: CellModel[]): [CellModel[], CellModel[], CellM
     return threeSquares
 }
 
-function arrangeCellsIntoSquares(puzzle: CellModel[]): CellModel[][] {
+function arrangeCellsIntoSquares(puzzle: Cell[]): Cell[][] {
 
     const sudokuThirds = splitArrayIntoThirds(puzzle);
     const squareValues = [];
@@ -37,11 +37,11 @@ function arrangeCellsIntoSquares(puzzle: CellModel[]): CellModel[][] {
     return squareValues
 }
 
-export function generateSudoku(): CellModel[][] {
+export function generateSudoku(): Cell[][] {
 
     const sudokuPuzzle = getSudoku('easy').puzzle
         .split('')
-        .map<CellModel>((element, index) => ({
+        .map<Cell>((element, index) => ({
             value: element === '-' ? '' : element,
             id: index,
             squareId: '',

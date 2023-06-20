@@ -1,4 +1,4 @@
-import { CellModel } from "../models/Cell.model";
+import { Cell } from "../models/Cell.model";
 
 function findSquareNeighbors() {
     // const div = document.getElementById(this.idText);
@@ -63,7 +63,7 @@ function findColumnNeighbors(id:number) {
     return output;
 }
 
-export function findNeighbors(cell:CellModel){
+export function findNeighbors(cell:Cell){
     let neighbors = []
     neighbors.push(findColumnNeighbors(cell.id))
     neighbors.push(findLineNeighbors(cell.id))

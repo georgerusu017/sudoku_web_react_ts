@@ -1,6 +1,6 @@
-import { CellModel } from "../models/Cell.model"
+import { Cell } from "../models/Cell.model"
 
-export function getClassName(cell:CellModel){
+export function getClassName(cell:Cell){
     let className = 'cell'
     if(cell.isSelected) {
         className += ' highlightSelected'

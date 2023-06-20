@@ -1,11 +1,10 @@
-import { useState } from "react";
-import Cell from "../Cell/Cell";
+import CellComponent from "../CellComponent/CellComponent";
 import "../Square/Square.css"
-import { CellModel } from "../../models/Cell.model";
+import { Cell } from "../../models/Cell.model";
 type SquareProps = {
     id: string,
-    cells : CellModel[],
-    onSelectCell(cell: CellModel): void,
+    cells : Cell[],
+    onSelectCell(cell: Cell): void,
 }
 
 export default function Square({ id, cells , onSelectCell }: SquareProps) {
@@ -14,7 +13,7 @@ export default function Square({ id, cells , onSelectCell }: SquareProps) {
         <div className="square" id={id}>
             {
                 cells.map((cell, index) => (
-                    <Cell
+                    <CellComponent
                         key={`cell-${index}`}
                         cell={cell}
                         onSelectCell={onSelectCell}

@@ -1,5 +1,5 @@
-import { CellModel } from "../models/Cell.model";
+import { Cell } from "../models/Cell.model";
 
-export function selectCell(cell:CellModel) {
+export function selectCell(cell:Cell) {
     cell.isSelected = true;
 }

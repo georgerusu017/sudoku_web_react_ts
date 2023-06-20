@@ -1,4 +1,4 @@
-export interface CellModel {
+export interface Cell {
     value: string,
     id: number,
     squareId: string,
