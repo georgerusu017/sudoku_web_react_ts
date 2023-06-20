@@ -10,26 +10,13 @@ type CellProps = {
 
 export default function Cell({ cell, onSelectCell }: CellProps) {
 
-    // const [cellId] = useState(id);
-    // const [cellValue] = useState(value);
-
-    // useEffect(() => {
-    //     if(cell.isSelected) {
-    //         setClassName('cell highlightSelected')
-    //     }
-    //     console.log(className);
-    // }, [cell.isSelected, className])
-    // if(cell.isSelected) className.concat("highlightSelected")
-    // if(cell.isSibling) className.concat("highlightSibling")
-
-
     const handleClick = useCallback(() => {
         onSelectCell(cell)
     }, [cell, onSelectCell])
 
     return (
         <div className={getClassName(cell)}
-            id={cell.id}
+            id={`cell-${cell.id}`}
             onClick={handleClick}>
             {cell.value}
         </div>

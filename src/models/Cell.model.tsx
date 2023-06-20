@@ -1,6 +1,6 @@
 export interface CellModel {
     value: string,
-    id: string,
+    id: number,
     squareId: string,
     isSelected: boolean,
     isHighlighted: boolean,

@@ -4,6 +4,7 @@ import { useCallback, useState } from "react";
 import { generateSudoku } from "../../services/sudoku.service";
 import { CellModel } from "../../models/Cell.model";
 import { selectCell } from "../../services/selectCell";
+import { findNeighbors } from "../../services/findNeighbors";
 
 
 export default function GameBoard() {
@@ -13,11 +14,9 @@ export default function GameBoard() {
 
     const initialCells = cells[0][0];
     const [selectedCell, setSelectedCell] = useState<CellModel>(initialCells)
-    
-    const onSelectCell = useCallback((cell: CellModel) => {
-        console.log("in gameBoard", cell.id);
 
-        // let newCells = cells.forEach(  )
+    const onSelectCell = useCallback((cell: CellModel) => {
+        let neighbors = findNeighbors(cell)
 
         cells.flat().forEach(squareCell => {
             if (squareCell.id === cell.id) {
@@ -34,6 +33,11 @@ export default function GameBoard() {
                 squareCell.isSibling = false;
             }
         })
+
+        neighbors.forEach(id => {
+            //
+        })
+        
         setCells([...cells])
 
     }, [cells])

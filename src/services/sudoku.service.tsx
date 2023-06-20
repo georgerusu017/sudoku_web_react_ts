@@ -43,7 +43,7 @@ export function generateSudoku(): CellModel[][] {
         .split('')
         .map<CellModel>((element, index) => ({
             value: element === '-' ? '' : element,
-            id: index.toString(),
+            id: index,
             squareId: '',
             isSelected: false,
             isHighlighted: false,
