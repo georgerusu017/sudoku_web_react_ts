@@ -11,9 +11,11 @@ export default function GameBoard() {
     const [cells, setCells] = useState<Cell[][]>(generateSudoku)
     const [selectedCell, setSelectedCell] = useState<Cell>(cells[0][0])
 
-    // un useEffect pentru handleSelectCell cells[0][0]  
-    // notita 1: ar fi bine sa fie cumva controlat apelat, si anume sa fie simulat click-ul, selectia celulei 0 0
-    selectedCell.isSelected = true
+    useEffect(() => {
+        highlightCells(cells[0][0],cells)
+        setSelectedCell(cells[0][0])
+        setCells([...cells])
+    },[])
 
     const handleSelectedCell = useCallback((cell: Cell) => {
         
