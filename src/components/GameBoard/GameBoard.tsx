@@ -21,14 +21,33 @@ export default function GameBoard() {
     const handleSelectCell = useCallback((cell: Cell) => {
         let neighbors = findNeighbors(cell)
 
+        cells.flat().forEach(item => {
+            if (item.squareId === cell.squareId) {
+                neighbors.push(item.id)
+            }
+        })
+        neighbors = neighbors.filter((value, index) => neighbors.indexOf(value) === index);
+
         cells.flat().forEach(squareCell => {
+
+            squareCell.isHighlighted = false
+            
+            if (neighbors.length > 0) {
+                neighbors.forEach((id, index) => {
+                    if (squareCell.id === id) {
+                        squareCell.isHighlighted = true
+                        neighbors.splice(index, 1)
+                    }
+                })
+            }
+
             if (squareCell.id === cell.id) {
                 squareCell.isSelected = true
             }
             else {
                 squareCell.isSelected = false
             }
-            
+
             if (squareCell.value !== '' && squareCell.value === cell.value) {
                 squareCell.isSibling = true;
             }
@@ -37,14 +56,8 @@ export default function GameBoard() {
             }
         })
 
-        neighbors.forEach(id => {
-            // squareId din cell, foloseste-l 
-            // notita 2: in cell avem si square id pe care nu stiu daca il folosesc??
-        })
+        console.log(cells.flat())
 
-        console.
-        log(cell)
-        
         setSelectedCell(cell)
         setCells([...cells])
 

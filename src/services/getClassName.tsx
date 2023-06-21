@@ -9,5 +9,9 @@ export function getClassName(cell:Cell){
     if(cell.isSibling) {
         className += ' highlightSibling'
     }
+
+    if(cell.isHighlighted) {
+        className += ' highlight'
+    }
     return className
 }
