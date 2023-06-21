@@ -21,13 +21,6 @@ export default function GameBoard() {
     const handleSelectCell = useCallback((cell: Cell) => {
         let neighbors = findNeighbors(cell)
 
-        cells.flat().forEach(item => {
-            if (item.squareId === cell.squareId) {
-                neighbors.push(item.id)
-            }
-        })
-        neighbors = neighbors.filter((value, index) => neighbors.indexOf(value) === index);
-
         cells.flat().forEach(squareCell => {
 
             squareCell.isHighlighted = false
@@ -39,6 +32,10 @@ export default function GameBoard() {
                         neighbors.splice(index, 1)
                     }
                 })
+            }
+
+            if (squareCell.squareId === cell.squareId) {
+                squareCell.isHighlighted = true
             }
 
             if (squareCell.id === cell.id) {
