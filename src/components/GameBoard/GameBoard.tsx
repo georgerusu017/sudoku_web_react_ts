@@ -12,10 +12,12 @@ export default function GameBoard() {
     const [selectedCell, setSelectedCell] = useState<Cell>(cells[0][0])
 
     useEffect(() => {
-        highlightCells(cells[0][0],cells)
-        setSelectedCell(cells[0][0])
-        setCells([...cells])
+
+        handleSelectedCell(cells[0][0])
+        // fara dependita sa ruleze o data.
     },[])
+
+    //aici un alt useEffect cu addEventListener + return removeEventListener pentru ArrowKeys.
 
     const handleSelectedCell = useCallback((cell: Cell) => {
         
@@ -25,14 +27,12 @@ export default function GameBoard() {
 
     }, [cells])
 
-
     return (
         <div className="game-board">
             {
                 cells.map((squareCells, index) => (
                     <Square
                         key={`square-${index}`}
-                        id={`square-${index}`}
                         cells={squareCells}
                         onSelectCell={handleSelectedCell}
                     />

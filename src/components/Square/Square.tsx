@@ -2,15 +2,14 @@ import CellComponent from "../CellComponent/CellComponent";
 import "../Square/Square.css"
 import { Cell } from "../../models/Cell.model";
 type SquareProps = {
-    id: string,
     cells : Cell[],
     onSelectCell(cell: Cell): void,
 }
 
-export default function Square({ id, cells , onSelectCell }: SquareProps) {
+export default function Square({ cells , onSelectCell }: SquareProps) {
 
     return (
-        <div className="square" id={id}>
+        <div className="square">
             {
                 cells.map((cell, index) => (
                     <CellComponent

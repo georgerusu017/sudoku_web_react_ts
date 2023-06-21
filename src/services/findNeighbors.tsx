@@ -1,14 +1,5 @@
 import { Cell } from "../models/Cell.model";
 
-function findSquareNeighbors() {
-    // ??
-    // const div = document.getElementById(this.idText);
-
-    // return [...div.parentNode.childNodes]
-    //     .filter(cellHtml => cellHtml.id != this.idText)
-    //     .map((cellHtml) => parseInt(cellHtml.id.split("-").pop()))
-}
-
 function findLineNeighbors(id:number) {
 
     let smallerNum = id;
