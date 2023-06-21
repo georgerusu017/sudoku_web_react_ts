@@ -31,7 +31,7 @@ export default function GameBoard() {
         cells.flat().forEach(squareCell => {
 
             squareCell.isHighlighted = false
-            
+
             if (neighbors.length > 0) {
                 neighbors.forEach((id, index) => {
                     if (squareCell.id === id) {
@@ -57,6 +57,7 @@ export default function GameBoard() {
         })
 
         console.log(cells.flat())
+        console.log(neighbors.length)
 
         setSelectedCell(cell)
         setCells([...cells])
