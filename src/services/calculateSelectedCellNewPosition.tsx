@@ -5,9 +5,6 @@ export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
 
     const neighbors:number[] = findLineNeighbors(cell.id);
 
-    console.log("neighbors =", neighbors);
-    
-
     let cellId = cell.id;
 
     if (event === 'ArrowLeft') {

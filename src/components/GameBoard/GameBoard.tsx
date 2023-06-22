@@ -22,12 +22,12 @@ export default function GameBoard() {
 
     const handleArrowKeyPress = useCallback((event: { key: string }) => {
 
-        console.log("Selected cell = ", selectedCell);
+        console.log("Selected cell type = ",typeof selectedCell);
         
         const newId = calculateSelectedCellNewPosition(selectedCell, event.key)
         const newSelectedCell = cells.flat().find(cell => cell.id === newId)
 
-        console.log("new Selected Cell = ", newSelectedCell);
+        console.log("New Selected cell type = ", typeof newSelectedCell);
         
         // de ce nu o pot selecta???
         // setSelectedCell(newSelectedCell)
