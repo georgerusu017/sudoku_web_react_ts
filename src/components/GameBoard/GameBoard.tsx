@@ -9,38 +9,41 @@ import { calculateSelectedCellNewPosition } from "../../services/calculateSelect
 
 export default function GameBoard() {
 
-    const [cells, setCells] = useState<Cell[][]>(generateSudoku)
-    const [selectedCell, setSelectedCell] = useState<Cell>(cells[0][0])
+    
+    const [squares, setSquares] = useState<Cell[][]>(generateSudoku)
+    const [selectedCell, setSelectedCell] = useState<Cell>(squares[0][0])
+    // use memo pentru squares.flat() -> cells
 
     useEffect(() => {
 
-        handleSelectedCell(cells[0][0])
+        handleSelectedCell(squares[0][0])
 
     }, [])
 
     const handleSelectedCell = useCallback((cell: Cell) => {
 
-        const newCells = [...cells]
+        const newSquares = [...squares]
 
-        highlightCells(cell, newCells)
+        highlightCells(cell, newSquares)
         setSelectedCell(cell)
-        setCells(newCells)
+        setSquares(newSquares)
 
-    }, [cells])
+    }, [squares])
 
     const handleArrowKeyPress = useCallback((event: { key: string }) => {
         
         const newId = calculateSelectedCellNewPosition(selectedCell, event.key)
-        const newSelectedCell = cells.flat().find(cell => cell.id === newId)
+        const newSelectedCell = squares.flat().find(cell => cell.id === newId)
         
         if (newSelectedCell) {
             handleSelectedCell(newSelectedCell)
         }
 
-    }, [cells, handleSelectedCell, selectedCell])
+    }, [squares, handleSelectedCell, selectedCell])
 
     useEffect(() => {
         document.addEventListener("keydown", handleArrowKeyPress)
+
 
         return () => {
             document.removeEventListener("keydown", handleArrowKeyPress)
@@ -51,7 +54,9 @@ export default function GameBoard() {
     return (
         <div className="game-board">
             {
-                cells.map((squareCells, index) => (
+                //aici facem for 1-9 1-9 pentru distribuire din cells care va fi doar un array
+                // saaau doar un for aici si un for in cells
+                squares.map((squareCells, index) => (
                     <Square
                         key={`square-${index}`}
                         cells={squareCells}

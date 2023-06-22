@@ -7,17 +7,14 @@ export function highlightCells(selectedCell: Cell, cells: Cell[][]) {
 
     cells.flat().forEach(squareCell => {
 
-        squareCell.isHighlighted = false
-
-        squareCell.isHighlighted = neighborIds.includes(squareCell.id)
-
-        if (squareCell.squareId === selectedCell.squareId) {
-            squareCell.isHighlighted = true
-        }
+        const isSameLineOrColumn = neighborIds.includes(squareCell.id);
+        const isSameSquare = squareCell.squareId === selectedCell.squareId;
+        squareCell.isHighlighted = isSameLineOrColumn || isSameSquare;
 
         squareCell.isSelected = squareCell.id === selectedCell.id
 
-        squareCell.isSibling = squareCell.value !== '' && squareCell.value === selectedCell.value
-    
+        const isNotEmpty = squareCell.value !== '';
+        const isSameValue = squareCell.value === selectedCell.value;
+        squareCell.isSibling = isNotEmpty && isSameValue;
     })
 }

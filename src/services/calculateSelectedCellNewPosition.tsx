@@ -1,6 +1,9 @@
 import { Cell } from "../models/Cell.model";
 import { findLineNeighbors } from "./findNeighbors";
 
+// const pentru Arrow aici cu enum (ts enum for hint)
+
+
 export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
 
     const neighbors:number[] = findLineNeighbors(cell.id);
