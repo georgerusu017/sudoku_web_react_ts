@@ -1,5 +1,5 @@
 import { Cell } from "../models/Cell.model";
-import { findLineNeighbors, findNeighbors } from "./findNeighbors";
+import { findLineNeighbors } from "./findNeighbors";
 
 export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
 
@@ -18,7 +18,7 @@ export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
 
     if (event === 'ArrowRight') {
         if (cellId + 1 > neighbors[7]) {
-            cellId += 8
+            cellId -= 8
         }
         else {
             cellId++;

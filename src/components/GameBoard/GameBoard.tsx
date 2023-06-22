@@ -18,21 +18,26 @@ export default function GameBoard() {
 
     }, [])
 
-    //aici un alt useEffect cu addEventListener + return removeEventListener pentru ArrowKeys.
+    const handleSelectedCell = useCallback((cell: Cell) => {
+
+        const newCells = [...cells]
+
+        highlightCells(cell, newCells)
+        setSelectedCell(cell)
+        setCells(newCells)
+
+    }, [cells])
 
     const handleArrowKeyPress = useCallback((event: { key: string }) => {
-
-        console.log("Selected cell type = ",typeof selectedCell);
         
         const newId = calculateSelectedCellNewPosition(selectedCell, event.key)
         const newSelectedCell = cells.flat().find(cell => cell.id === newId)
-
-        console.log("New Selected cell type = ", typeof newSelectedCell);
         
-        // de ce nu o pot selecta???
-        // setSelectedCell(newSelectedCell)
+        if (newSelectedCell) {
+            handleSelectedCell(newSelectedCell)
+        }
 
-    }, [])
+    }, [cells, handleSelectedCell, selectedCell])
 
     useEffect(() => {
         document.addEventListener("keydown", handleArrowKeyPress)
@@ -42,17 +47,6 @@ export default function GameBoard() {
         }
 
     }, [handleArrowKeyPress])
-
-    const handleSelectedCell = useCallback((cell: Cell) => {
-
-        highlightCells(cell, cells)
-        setSelectedCell(cell)
-        setCells([...cells])
-
-        console.log(selectedCell);
-        
-
-    }, [cells])
 
     return (
         <div className="game-board">
