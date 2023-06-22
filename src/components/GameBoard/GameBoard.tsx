@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react";
 import { generateSudoku } from "../../services/sudoku.service";
 import { Cell } from "../../models/Cell.model";
 import { highlightCells } from "../../services/highlightCells";
+import { calculateSelectedCellNewPosition } from "../../services/calculateSelectedCellNewPosition";
 
 
 export default function GameBoard() {
@@ -14,14 +15,36 @@ export default function GameBoard() {
     useEffect(() => {
 
         handleSelectedCell(cells[0][0])
-        // fara dependita sa ruleze o data.
-    },[])
+
+    }, [])
 
     //aici un alt useEffect cu addEventListener + return removeEventListener pentru ArrowKeys.
 
-    const handleSelectedCell = useCallback((cell: Cell) => {
+    const handleArrowKeyPress = useCallback((event: { key: string }) => {
+
+        console.log("Selected cell = ", selectedCell);
         
-        highlightCells(cell,cells)
+        const newId = calculateSelectedCellNewPosition(selectedCell, event.key)
+        const newSelectedCell = cells.flat().find(cell => cell.id === newId)
+
+        console.log("new Selected Cell = ", newSelectedCell);
+        
+        // setSelectedCell(newSelectedCell)
+
+    }, [])
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleArrowKeyPress)
+
+        return () => {
+            document.removeEventListener("keydown", handleArrowKeyPress)
+        }
+
+    }, [handleArrowKeyPress])
+
+    const handleSelectedCell = useCallback((cell: Cell) => {
+
+        highlightCells(cell, cells)
         setSelectedCell(cell)
         setCells([...cells])
 

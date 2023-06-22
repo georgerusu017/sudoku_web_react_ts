@@ -1,6 +1,6 @@
 import { Cell } from "../models/Cell.model";
 
-function findLineNeighbors(id:number) {
+export function findLineNeighbors(id:number) {
 
     let smallerNum = id;
     let largerNum = id;
@@ -27,6 +27,7 @@ function findLineNeighbors(id:number) {
     }
 
     output = neighbors.filter(item => item !== id)
+    output.sort((a, b) => a - b);
 
     return output;
 }
@@ -59,6 +60,7 @@ export function findNeighbors(cell:Cell){
     let neighbors = []
     neighbors.push(...findColumnNeighbors(cell.id))
     neighbors.push(...findLineNeighbors(cell.id))
+
 
     return neighbors
 }
