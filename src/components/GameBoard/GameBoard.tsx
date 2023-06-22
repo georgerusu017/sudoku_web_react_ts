@@ -29,6 +29,7 @@ export default function GameBoard() {
 
         console.log("new Selected Cell = ", newSelectedCell);
         
+        // de ce nu o pot selecta???
         // setSelectedCell(newSelectedCell)
 
     }, [])
@@ -47,6 +48,9 @@ export default function GameBoard() {
         highlightCells(cell, cells)
         setSelectedCell(cell)
         setCells([...cells])
+
+        console.log(selectedCell);
+        
 
     }, [cells])
 
