@@ -1,36 +1,53 @@
 import NumberButton from "../NumberButton/NumberButton"
 import "../ControlBoard/ControlBoard.css"
+import { useCallback } from "react"
+type ControlBoardProps = {
+    onNewGameClick(): void,
+}
 
-
-export default function ControlBoard() {
+export default function ControlBoard( {onNewGameClick} : ControlBoardProps ) {
 
     const numberButtons = Array.from({ length: 9 }, (_, index) => index + 1)
+
+    const handleClick = useCallback(() => {        
+        onNewGameClick()
+    }, [onNewGameClick])
 
     return (
         <div className="control-board">
             <div className="control-buttons-board">
+
                 <div className="control-div">
                     <button className="control-button" id="undo-button"></button>
                     <label>Undo</label>
                 </div>
+
                 <div className="control-div">
                     <button className="control-button" id="erase-button"></button>
                     <label>Erase</label>
                 </div>
+
                 <div className="control-div">
                     <button className="control-button" id="notes-button">
                         <div id="notesToggle">OFF</div>
                     </button>
                     <label>Notes</label>
                 </div>
+
             </div>
+
             <div className="number-buttons">
+
                 {numberButtons.map((number) => (
                     <NumberButton key={`number-button${number}`} value={number} />
                 ))}
-                <button className="new-game-button">
+
+                <button
+                    className="new-game-button"
+                    onClick={handleClick}>
                     New Game
                 </button>
+
             </div>
 
         </div>

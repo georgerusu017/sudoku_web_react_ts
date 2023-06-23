@@ -1,8 +1,12 @@
 import { Cell } from "../models/Cell.model";
 import { findLineNeighbors } from "./findNeighbors";
 
-// const pentru Arrow aici cu enum (ts enum for hint)
-
+enum Arrow {
+    Left = `ArrowLeft`,
+    Right = `ArrowRight`,
+    Up = `ArrowUp`,
+    Down = `ArrowDown`
+}
 
 export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
 
@@ -10,7 +14,7 @@ export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
 
     let cellId = cell.id;
 
-    if (event === 'ArrowLeft') {
+    if (event === Arrow.Left) {
         if (cellId - 1 < neighbors[0]) {
             cellId += 8
         }
@@ -19,7 +23,7 @@ export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
         }
     }
 
-    if (event === 'ArrowRight') {
+    if (event === Arrow.Right) {
         if (cellId + 1 > neighbors[7]) {
             cellId -= 8
         }
@@ -28,7 +32,7 @@ export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
         }
     }
 
-    if (event === 'ArrowUp') {
+    if (event === Arrow.Up) {
 
         cellId -= 9;
         if (cellId < 0) {
@@ -36,7 +40,7 @@ export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
         }
     }
 
-    if (event === 'ArrowDown') {
+    if (event === Arrow.Down) {
 
         cellId += 9;
         if (cellId > 80) {
