@@ -18,6 +18,7 @@ export default function SudokuGame() {
 
    }, [])
 
+   // aici mutam generarea de sudoku din GameBoard
 
    return (
       <div className="sudoku-game">

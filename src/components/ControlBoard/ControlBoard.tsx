@@ -9,10 +9,6 @@ export default function ControlBoard( {onNewGameClick} : ControlBoardProps ) {
 
     const numberButtons = Array.from({ length: 9 }, (_, index) => index + 1)
 
-    const handleClick = useCallback(() => {        
-        onNewGameClick()
-    }, [onNewGameClick])
-
     return (
         <div className="control-board">
             <div className="control-buttons-board">
@@ -44,7 +40,7 @@ export default function ControlBoard( {onNewGameClick} : ControlBoardProps ) {
 
                 <button
                     className="new-game-button"
-                    onClick={handleClick}>
+                    onClick={onNewGameClick}>
                     New Game
                 </button>
 

@@ -12,28 +12,19 @@ type GameBoardProps = {
 
 export default function GameBoard(trigger : GameBoardProps) {
 
-    
+    // transformat in cells, venit direct .flat din generateSudoku
     const [squares, setSquares] = useState<Cell[][]>(generateSudoku)
     const [selectedCell, setSelectedCell] = useState<Cell>(squares[0][0])
-
-    // De ce folosesc memo aici? daca depinde tot de squares?
-    // iar la linia 36 eu setez squares ca sa fac selectedCell, daca inlocuiesc newSquares cu newCells etc,
-    // la sfarsit nu trebuie facut setSquares?.. dupa ce am generat Sudoku eu celulele le modific..
-
-    const cells = useMemo(() => {
-        return squares.flat()
-    },[squares])
 
     useEffect(() => {
 
         if(trigger) {
 
-            console.log("hit");
             let newSudoku = generateSudoku()
-            console.log(squares);
-            
+            console.log(newSudoku);
             setSquares([...newSudoku])
-            handleSelectedCell(cells[0])
+            // facut in alta parte, nu aici in useEffect. Pentru ca setSquares este asincron.
+            handleSelectedCell(newSudoku[0][0])
 
         }
 
@@ -52,13 +43,13 @@ export default function GameBoard(trigger : GameBoardProps) {
     const handleArrowKeyPress = useCallback((event: { key: string }) => {
         
         const newId = calculateSelectedCellNewPosition(selectedCell, event.key)
-        const newSelectedCell = cells.find(cell => cell.id === newId)
+        const newSelectedCell = squares.flat().find(cell => cell.id === newId)
         
         if (newSelectedCell) {
             handleSelectedCell(newSelectedCell)
         }
 
-    }, [selectedCell, cells, handleSelectedCell])
+    }, [selectedCell, squares, handleSelectedCell])
 
     useEffect(() => {
         document.addEventListener("keydown", handleArrowKeyPress)
