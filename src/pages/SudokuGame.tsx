@@ -24,16 +24,17 @@ export default function SudokuGame() {
 
    const handleSelectedCell = useCallback((cell: Cell) => {
 
-      const newSquares = cells
+      const newCells = [...cells]
 
-      highlightCells(cell, newSquares)
+      highlightCells(cell, newCells)
       setSelectedCell(cell)
+      setCells(newCells)
 
    }, [cells])
 
-   const handleArrowKeyPress = useCallback((event: { key: string }) => {
+   const handleArrowKeyPress = useCallback((key: string) => {
 
-      const newId = calculateSelectedCellNewPosition(selectedCell, event.key)
+      const newId = calculateSelectedCellNewPosition(selectedCell, key)
       const newSelectedCell = cells.find(cell => cell.id === newId)
 
       if (newSelectedCell) {
@@ -42,22 +43,47 @@ export default function SudokuGame() {
 
    }, [selectedCell, cells, handleSelectedCell])
 
-   const handleValueChange = useCallback((event: {key: string}) => {
+   const handleValueChange = useCallback((value: string) => {
 
-      updateCellValue(selectedCell,event.key)
+      const newCells = [...cells];
 
-   },[])
-
-   useEffect(() => {
-      document.addEventListener("keydown", handleArrowKeyPress)
-
-
-      return () => {
-         document.removeEventListener("keydown", handleArrowKeyPress)
+      if (!selectedCell.isEditable) {
+         return
       }
 
-   }, [handleArrowKeyPress])
+      if (selectedCell.value === value) {
+         selectedCell.value = '';
+      }
+      else {
+         selectedCell.value = value;
+      }
 
+      highlightCells(selectedCell, newCells)
+      setCells(newCells)
+
+   }, [cells, selectedCell])
+
+   const handleKeyDown = useCallback((event: KeyboardEvent) => {
+
+      // de rezolvat cu NEW GAME si BUTOANELE 1-9
+      if (/^[1-9]$/.test(event.key)) {
+         handleValueChange(event.key)
+
+      } else {
+         handleArrowKeyPress(event.key)
+      }
+
+   }, [handleArrowKeyPress, handleValueChange])
+
+
+   useEffect(() => {
+      document.addEventListener("keydown", handleKeyDown)
+
+      return () => {
+         document.removeEventListener("keydown", handleKeyDown)
+      }
+
+   }, [handleKeyDown])
 
 
    return (
@@ -68,7 +94,10 @@ export default function SudokuGame() {
                cells={cells}
                onSelectCell={handleSelectedCell} />
          </div>
-         <ControlBoard onNewGameClick={handleNewGame} onNumberButtonClick={handleValueChange} />
+         <ControlBoard
+            onNewGameClick={handleNewGame}
+         // onNumberButtonClick={handleValueChange}
+         />
       </div>
    )
 }

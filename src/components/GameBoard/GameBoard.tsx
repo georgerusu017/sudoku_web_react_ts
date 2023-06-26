@@ -1,13 +1,11 @@
 import Square from "../Square/Square";
 import "../GameBoard/GameBoard.css"
-import { useCallback, useEffect, useMemo, useState } from "react";
 import { Cell } from "../../models/Cell.model";
 
 type GameBoardProps = {
-    cells: [],
+    cells: Cell[],
     onSelectCell(cell: Cell): void,
 }
-
 
 export default function GameBoard({cells, onSelectCell} : GameBoardProps) {
 
