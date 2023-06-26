@@ -13,8 +13,8 @@ type GameBoardProps = {
 export default function GameBoard(trigger : GameBoardProps) {
 
     // transformat in cells, venit direct .flat din generateSudoku
-    const [squares, setSquares] = useState<Cell[][]>(generateSudoku)
-    const [selectedCell, setSelectedCell] = useState<Cell>(squares[0][0])
+    const [cells, setCells] = useState<Cell[]>(generateSudoku)
+    const [selectedCell, setSelectedCell] = useState<Cell>(cells[0])
 
     useEffect(() => {
 
@@ -22,9 +22,9 @@ export default function GameBoard(trigger : GameBoardProps) {
 
             let newSudoku = generateSudoku()
             console.log(newSudoku);
-            setSquares([...newSudoku])
+            setCells([...newSudoku])
             // facut in alta parte, nu aici in useEffect. Pentru ca setSquares este asincron.
-            handleSelectedCell(newSudoku[0][0])
+            handleSelectedCell(newSudoku[0])
 
         }
 
@@ -32,24 +32,24 @@ export default function GameBoard(trigger : GameBoardProps) {
 
     const handleSelectedCell = useCallback((cell: Cell) => {
 
-        const newSquares = [...squares]
+        const newSquares = [...cells]
 
         highlightCells(cell, newSquares)
         setSelectedCell(cell)
-        setSquares(newSquares)
+        setCells(newSquares)
 
-    }, [squares])
+    }, [cells])
 
     const handleArrowKeyPress = useCallback((event: { key: string }) => {
         
         const newId = calculateSelectedCellNewPosition(selectedCell, event.key)
-        const newSelectedCell = squares.flat().find(cell => cell.id === newId)
+        const newSelectedCell = cells.find(cell => cell.id === newId)
         
         if (newSelectedCell) {
             handleSelectedCell(newSelectedCell)
         }
 
-    }, [selectedCell, squares, handleSelectedCell])
+    }, [selectedCell, cells, handleSelectedCell])
 
     useEffect(() => {
         document.addEventListener("keydown", handleArrowKeyPress)
@@ -61,12 +61,21 @@ export default function GameBoard(trigger : GameBoardProps) {
 
     }, [handleArrowKeyPress])
 
+
+    const squares:Cell[][] = []
+
+    for(let i=0; i<9; i++){
+        let square:Cell[] = []
+        for(let j=0; j<9; j++){
+            square.push(cells[(9*i + j)])
+        }
+        squares.push(square)
+    }
+
     return (
         <div className="game-board">
             {
-                //aici facem for 1-9 1-9 pentru distribuire din cells care va fi doar un array
-                // saaau doar un for aici si un for in cells
-
+                
                 squares.map((squareCells, index) => (
                     <Square
                         key={`square-${index}`}

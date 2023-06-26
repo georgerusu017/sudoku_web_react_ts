@@ -40,7 +40,7 @@ function arrangeCellsIntoSquares(puzzle: Cell[]): Cell[][] {
     return squareValues
 }
 
-export function generateSudoku(): Cell[][] {
+export function generateSudoku(): Cell[] {
 
     const sudokuPuzzle = getSudoku('easy').puzzle
         .split('')
@@ -53,7 +53,7 @@ export function generateSudoku(): Cell[][] {
             isSibling: false,
         }));
 
-    const squareValues = arrangeCellsIntoSquares(sudokuPuzzle);
+    const squareValues = arrangeCellsIntoSquares(sudokuPuzzle).flat();
 
     return squareValues
 }

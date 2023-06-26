@@ -1,11 +1,11 @@
 import { Cell } from "../models/Cell.model";
 import { findNeighbors } from "./findNeighbors";
 
-export function highlightCells(selectedCell: Cell, cells: Cell[][]) {
+export function highlightCells(selectedCell: Cell, cells: Cell[]) {
 
     let neighborIds = findNeighbors(selectedCell)
 
-    cells.flat().forEach(squareCell => {
+    cells.forEach(squareCell => {
 
         const isSameLineOrColumn = neighborIds.includes(squareCell.id);
         const isSameSquare = squareCell.squareId === selectedCell.squareId;
