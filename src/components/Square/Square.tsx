@@ -1,6 +1,7 @@
 import CellComponent from "../CellComponent/CellComponent";
 import "../Square/Square.css"
 import { Cell } from "../../models/Cell.model";
+
 type SquareProps = {
     cells : Cell[],
     onSelectCell(cell: Cell): void,

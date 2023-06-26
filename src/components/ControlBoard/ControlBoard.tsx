@@ -1,11 +1,12 @@
 import NumberButton from "../NumberButton/NumberButton"
 import "../ControlBoard/ControlBoard.css"
-import { useCallback } from "react"
+
 type ControlBoardProps = {
     onNewGameClick(): void,
+    onNumberButtonClick(): void
 }
 
-export default function ControlBoard( {onNewGameClick} : ControlBoardProps ) {
+export default function ControlBoard( {onNewGameClick, onNumberButtonClick} : ControlBoardProps ) {
 
     const numberButtons = Array.from({ length: 9 }, (_, index) => index + 1)
 
@@ -35,7 +36,7 @@ export default function ControlBoard( {onNewGameClick} : ControlBoardProps ) {
             <div className="number-buttons">
 
                 {numberButtons.map((number) => (
-                    <NumberButton key={`number-button${number}`} value={number} />
+                    <NumberButton onClick={onNumberButtonClick} key={`number-button${number}`} value={number} />
                 ))}
 
                 <button
