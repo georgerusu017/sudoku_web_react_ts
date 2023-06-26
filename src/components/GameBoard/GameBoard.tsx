@@ -12,7 +12,6 @@ type GameBoardProps = {
 
 export default function GameBoard(trigger : GameBoardProps) {
 
-    // transformat in cells, venit direct .flat din generateSudoku
     const [cells, setCells] = useState<Cell[]>(generateSudoku)
     const [selectedCell, setSelectedCell] = useState<Cell>(cells[0])
 
