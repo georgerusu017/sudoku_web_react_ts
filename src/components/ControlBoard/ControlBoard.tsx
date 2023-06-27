@@ -3,10 +3,10 @@ import "../ControlBoard/ControlBoard.css"
 
 type ControlBoardProps = {
     onNewGameClick(): void,
-    // onNumberButtonClick(): void
+    onNumberButtonClick(value:string): void
 }
 
-export default function ControlBoard( {onNewGameClick} : ControlBoardProps ) {
+export default function ControlBoard( {onNewGameClick, onNumberButtonClick} : ControlBoardProps ) {
 
     const numberButtons = Array.from({ length: 9 }, (_, index) => index + 1)
 
@@ -37,7 +37,7 @@ export default function ControlBoard( {onNewGameClick} : ControlBoardProps ) {
 
                 {numberButtons.map((number) => (
                     <NumberButton 
-                    // onClick={onNumberButtonClick} 
+                    onNumberButtonClick={onNumberButtonClick} 
                     key={`number-button${number}`} 
                     value={number} />
                 ))}

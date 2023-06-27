@@ -7,7 +7,6 @@ import { Cell } from '../models/Cell.model';
 import { generateSudoku } from '../services/sudoku.service';
 import { highlightCells } from '../services/highlightCells';
 import { calculateSelectedCellNewPosition } from '../services/calculateSelectedCellNewPosition';
-import { updateCellValue } from '../services/updateCellValue';
 
 export default function SudokuGame() {
 
@@ -96,7 +95,7 @@ export default function SudokuGame() {
          </div>
          <ControlBoard
             onNewGameClick={handleNewGame}
-         // onNumberButtonClick={handleValueChange}
+            onNumberButtonClick={handleValueChange}
          />
       </div>
    )
