@@ -29,16 +29,15 @@ export default function SudokuGame() {
 
    const handleNewGame = useCallback(() => {
       const newCells = generateSudoku()
-      setCells(newCells)
-      
-      setSelectedCell(newCells[0])
       highlightCells(newCells[0], newCells)
 
+      setCells(newCells)
+      setSelectedCell(newCells[0])
    }, [])
 
    useEffect(() => {
       handleSelectedCell(cells[0])
-   },[])
+   }, [])
 
    const handleArrowKeyPress = useCallback((key: string) => {
 
@@ -60,9 +59,11 @@ export default function SudokuGame() {
       }
 
       if (selectedCell.value === value) {
+         // verificare 
          selectedCell.value = '';
       }
       else {
+         // verificare
          selectedCell.value = value;
       }
 

@@ -3,6 +3,7 @@ import { findNeighbors } from "./findNeighbors";
 
 export function highlightCells(selectedCell: Cell, cells: Cell[]) {
 
+    // findNeighbors sa aduca toti vecinii fara duplicat, si fara celula selectata:)
     let neighborIds = findNeighbors(selectedCell)
 
     cells.forEach(squareCell => {

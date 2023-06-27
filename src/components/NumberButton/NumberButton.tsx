@@ -2,15 +2,17 @@ import { useCallback } from "react"
 import "../NumberButton/NumberButton.css"
 type NumberButtonProps = {
     value: number,
-    onNumberButtonClick(numberValue: string): void
+    onClick(numberValue: string): void
 }
 
-export default function NumberButton({ value, onNumberButtonClick }: NumberButtonProps) {
+export default function NumberButton({ value, onClick }: NumberButtonProps) {
 
     const handleClick = useCallback(() => {
-        const valueString = value.toString()
-        onNumberButtonClick(valueString)
-    }, [onNumberButtonClick, value])
+
+        const valueString = value.toString();
+        onClick(valueString);
+        
+    }, [onClick, value])
 
     return (
         <button className="number-button"

@@ -48,6 +48,7 @@ export function generateSudoku(): Cell[] {
             value: element === '-' ? '' : element,
             id: index,
             squareId: 99,
+            validationIndex: 0,
             isEditable: element === '-',
             isSelected: false,
             isHighlighted: false,

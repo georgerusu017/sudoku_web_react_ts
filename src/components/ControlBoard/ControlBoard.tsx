@@ -37,7 +37,7 @@ export default function ControlBoard( {onNewGameClick, onNumberButtonClick} : Co
 
                 {numberButtons.map((number) => (
                     <NumberButton 
-                    onNumberButtonClick={onNumberButtonClick} 
+                    onClick={onNumberButtonClick} 
                     key={`number-button${number}`} 
                     value={number} />
                 ))}
