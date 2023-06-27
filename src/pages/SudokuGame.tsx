@@ -17,10 +17,6 @@ export default function SudokuGame() {
       console.log("test")
    }
 
-   const handleNewGame = useCallback(() => {
-
-   }, [])
-
    const handleSelectedCell = useCallback((cell: Cell) => {
 
       const newCells = [...cells]
@@ -30,6 +26,19 @@ export default function SudokuGame() {
       setCells(newCells)
 
    }, [cells])
+
+   const handleNewGame = useCallback(() => {
+      const newCells = generateSudoku()
+      setCells(newCells)
+      
+      setSelectedCell(newCells[0])
+      highlightCells(newCells[0], newCells)
+
+   }, [])
+
+   useEffect(() => {
+      handleSelectedCell(cells[0])
+   },[])
 
    const handleArrowKeyPress = useCallback((key: string) => {
 
@@ -64,7 +73,6 @@ export default function SudokuGame() {
 
    const handleKeyDown = useCallback((event: KeyboardEvent) => {
 
-      // de rezolvat cu NEW GAME si BUTOANELE 1-9
       if (/^[1-9]$/.test(event.key)) {
          handleValueChange(event.key)
 
