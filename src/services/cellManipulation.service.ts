@@ -123,11 +123,7 @@ export function highlightCells(selectedCell: Cell, cells: Cell[]) {
     })
 }
 
-export function selectCell(cell:Cell) {
-    cell.isSelected = true;
-}
-
-export function findLineNeighbors(id: number) {
+function findLineNeighbors(id: number) {
 
     let smallerNum = id;
     let largerNum = id;
@@ -153,7 +149,7 @@ export function findLineNeighbors(id: number) {
         neighbors.push(i);
     }
 
-    output = neighbors.filter(item => item !== id)
+    output = neighbors.filter(neighborId => neighborId !== id)
     output.sort((a, b) => a - b);
 
     return output;
@@ -178,14 +174,16 @@ function findColumnNeighbors(id: number) {
         neighbors.push(i);
     }
 
-    output = neighbors.filter(item => item !== id)
+    output = neighbors.filter(neighborId => neighborId !== id)
 
     return output;
 }
 
-export function findNeighbors(cell: Cell, cells: Cell[]) {
+function findNeighbors(cell: Cell, cells: Cell[]) {
 
-    let neighbors = []
+    let neighbors: number[] = []
+
+    // uniqueNeighbors primeste direct celula, si findNeighbors va intoarce celule direct
 
     neighbors.push(...findColumnNeighbors(cell.id))
     neighbors.push(...findLineNeighbors(cell.id))
@@ -198,7 +196,7 @@ export function findNeighbors(cell: Cell, cells: Cell[]) {
 
     const uniqueNeighbors = Array
         .from(new Set(neighbors))
-        .filter(item => item !== cell.id)
+        .filter(neighborId => neighborId !== cell.id)
     ;
 
     return uniqueNeighbors
