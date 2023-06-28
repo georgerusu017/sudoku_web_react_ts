@@ -52,33 +52,25 @@ export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
 
 export function increaseInvalidCount(selectedCell: Cell, cells: Cell[]){
 
-    let neighborIds = findNeighbors(selectedCell, cells)
+    let neighborCells = findNeighbors(selectedCell, cells)
 
-    cells.forEach(cell => {
-
-        if(neighborIds.includes(cell.id)){
+    neighborCells.forEach(cell => {
             if(cell.value === selectedCell.value && cell.value !== ''){
                 cell.validationIndex++
                 selectedCell.validationIndex++
             }
-        }
-
     })
 }
 
 export function decreaseInvalidCount(selectedCell: Cell, cells: Cell[]){
 
-    let neighborIds = findNeighbors(selectedCell, cells)
+    let neighborCells = findNeighbors(selectedCell, cells)
 
-    cells.forEach(cell => {
-
-        if(neighborIds.includes(cell.id)){
+    neighborCells.forEach(cell => {
             if(cell.value === selectedCell.value && cell.value !== ''){
                 cell.validationIndex--
                 selectedCell.validationIndex--
             }
-        }
-
     })
 }
 
@@ -99,19 +91,24 @@ export function getClassName(cell:Cell){
 
 export function highlightCells(selectedCell: Cell, cells: Cell[]) {
 
-    let neighborIds = findNeighbors(selectedCell, cells)
+    let neighborCells = findNeighbors(selectedCell, cells)
 
     cells.forEach(cell => {
+        cell.isHighlighted = false;
+        cell.isSelected = false;
+        cell.isSibling = false;
+    })
 
-        const isNeighbor = neighborIds.includes(cell.id);
-        cell.isHighlighted = isNeighbor;
+    neighborCells.forEach(cell => {
 
-        cell.isSelected = cell.id === selectedCell.id
-
+        cell.isHighlighted = true;
         const isNotEmpty = cell.value !== '';
         const isSameValue = cell.value === selectedCell.value;
         cell.isSibling = isNotEmpty && isSameValue;
+
     })
+    
+    selectedCell.isSelected = true;
 }
 
 function findLineNeighbors(id: number) {
@@ -172,23 +169,25 @@ function findColumnNeighbors(id: number) {
 
 function findNeighbors(cell: Cell, cells: Cell[]) {
 
-    let neighbors: number[] = []
+    let neighborIDs: number[] = []
+    let neighborCells: Cell[] = []
 
-    // uniqueNeighbors primeste direct celula, si findNeighbors va intoarce celule direct
-
-    neighbors.push(...findColumnNeighbors(cell.id))
-    neighbors.push(...findLineNeighbors(cell.id))
+    neighborIDs.push(...findColumnNeighbors(cell.id))
+    neighborIDs.push(...findLineNeighbors(cell.id))
 
     cells.forEach(squareCell => {
         if (squareCell.squareId === cell.squareId) {
-            neighbors.push(squareCell.id)
+            neighborCells.push(squareCell)
+        }
+        if(neighborIDs.includes(squareCell.id)){
+            neighborCells.push(squareCell)
         }
     })
 
     const uniqueNeighbors = Array
-        .from(new Set(neighbors))
-        .filter(neighborId => neighborId !== cell.id)
+        .from(new Set(neighborCells))
+        .filter(neighborCells => neighborCells.id !== cell.id)
     ;
-
+    
     return uniqueNeighbors
 }
