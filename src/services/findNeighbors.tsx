@@ -57,10 +57,13 @@ function findColumnNeighbors(id:number) {
 }
 
 export function findNeighbors(cell:Cell){
+
     let neighbors = []
+
     neighbors.push(...findColumnNeighbors(cell.id))
     neighbors.push(...findLineNeighbors(cell.id))
 
-
+    console.log(neighbors);
+    
     return neighbors
 }
