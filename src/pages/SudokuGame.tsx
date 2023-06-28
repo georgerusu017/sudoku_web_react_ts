@@ -7,6 +7,7 @@ import { Cell } from '../models/Cell.model';
 import { generateSudoku } from '../services/sudoku.service';
 import { highlightCells } from '../services/highlightCells';
 import { calculateSelectedCellNewPosition } from '../services/calculateSelectedCellNewPosition';
+import { decreaseInvalidCount, increaseInvalidCount } from '../services/checkValidation';
 
 export default function SudokuGame() {
 
@@ -58,13 +59,24 @@ export default function SudokuGame() {
          return
       }
 
-      if (selectedCell.value === value) {
-         // verificare 
-         selectedCell.value = '';
-      }
-      else {
-         // verificare
+      if (selectedCell.value === "") {
+
          selectedCell.value = value;
+         increaseInvalidCount(selectedCell, cells, value)
+
+      }
+      else if (selectedCell.value === value) {
+
+         decreaseInvalidCount(selectedCell, cells, value)
+         selectedCell.value = '';
+
+      }
+      else if (selectedCell.value !== value) {
+
+         decreaseInvalidCount(selectedCell, cells, value)
+         selectedCell.value = value;
+         increaseInvalidCount(selectedCell, cells, value)
+
       }
 
       highlightCells(selectedCell, newCells)

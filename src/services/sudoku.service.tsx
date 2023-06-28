@@ -42,7 +42,7 @@ function arrangeCellsIntoSquares(puzzle: Cell[]): Cell[][] {
 
 export function generateSudoku(): Cell[] {
 
-    const sudokuPuzzle = getSudoku('easy').puzzle
+    const sudokuPuzzle = getSudoku('hard').puzzle
         .split('')
         .map<Cell>((element, index) => ({
             value: element === '-' ? '' : element,

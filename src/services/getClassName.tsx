@@ -13,5 +13,9 @@ export function getClassName(cell:Cell){
     if(cell.isHighlighted) {
         className += ' highlight'
     }
+
+    if(cell.validationIndex > 0){
+        className += ' highlightInvalid'
+    }
     return className
 }

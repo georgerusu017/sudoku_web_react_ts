@@ -1,21 +1,34 @@
 import { Cell } from "../models/Cell.model";
 import { findNeighbors } from "./findNeighbors";
 
-export function checkValidation(selectedCell: Cell, cells: Cell[], value:string){
+export function increaseInvalidCount(selectedCell: Cell, cells: Cell[], value: string){
 
-    let neighborIds = findNeighbors(selectedCell)
+    let neighborIds = findNeighbors(selectedCell, cells)
 
-    cells.forEach(squareCell => {
+    cells.forEach(cell => {
 
-        if(squareCell.squareId === selectedCell.squareId){
-            neighborIds.push(squareCell.id)
+        if(neighborIds.includes(cell.id)){
+            if(cell.value === selectedCell.value){
+                cell.validationIndex++
+                selectedCell.validationIndex++
+            }
         }
 
     })
+}
 
-    // if(squareCell.value === value){
-        
-        
-    // }
+export function decreaseInvalidCount(selectedCell: Cell, cells: Cell[], value: string){
 
+    let neighborIds = findNeighbors(selectedCell, cells)
+
+    cells.forEach(cell => {
+
+        if(neighborIds.includes(cell.id)){
+            if(cell.value === selectedCell.value){
+                cell.validationIndex--
+                selectedCell.validationIndex--
+            }
+        }
+
+    })
 }

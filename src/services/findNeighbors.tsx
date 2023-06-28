@@ -1,6 +1,6 @@
 import { Cell } from "../models/Cell.model";
 
-export function findLineNeighbors(id:number) {
+export function findLineNeighbors(id: number) {
 
     let smallerNum = id;
     let largerNum = id;
@@ -32,7 +32,7 @@ export function findLineNeighbors(id:number) {
     return output;
 }
 
-function findColumnNeighbors(id:number) {
+function findColumnNeighbors(id: number) {
     let smallerNum = id;
     let largerNum = id;
     let output = [];
@@ -56,14 +56,23 @@ function findColumnNeighbors(id:number) {
     return output;
 }
 
-export function findNeighbors(cell:Cell){
+export function findNeighbors(cell: Cell, cells: Cell[]) {
 
     let neighbors = []
 
     neighbors.push(...findColumnNeighbors(cell.id))
     neighbors.push(...findLineNeighbors(cell.id))
 
-    console.log(neighbors);
-    
-    return neighbors
+    cells.forEach(squareCell => {
+        if (squareCell.squareId === cell.squareId) {
+            neighbors.push(squareCell.id)
+        }
+    })
+
+    const uniqueNeighbors = Array
+        .from(new Set(neighbors))
+        .filter(item => item !== cell.id)
+    ;
+
+    return uniqueNeighbors
 }

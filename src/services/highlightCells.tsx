@@ -3,19 +3,17 @@ import { findNeighbors } from "./findNeighbors";
 
 export function highlightCells(selectedCell: Cell, cells: Cell[]) {
 
-    // findNeighbors sa aduca toti vecinii fara duplicat, si fara celula selectata:)
-    let neighborIds = findNeighbors(selectedCell)
+    let neighborIds = findNeighbors(selectedCell, cells)
 
-    cells.forEach(squareCell => {
+    cells.forEach(cell => {
 
-        const isSameLineOrColumn = neighborIds.includes(squareCell.id);
-        const isSameSquare = squareCell.squareId === selectedCell.squareId;
-        squareCell.isHighlighted = isSameLineOrColumn || isSameSquare;
+        const isNeighbor = neighborIds.includes(cell.id);
+        cell.isHighlighted = isNeighbor;
 
-        squareCell.isSelected = squareCell.id === selectedCell.id
+        cell.isSelected = cell.id === selectedCell.id
 
-        const isNotEmpty = squareCell.value !== '';
-        const isSameValue = squareCell.value === selectedCell.value;
-        squareCell.isSibling = isNotEmpty && isSameValue;
+        const isNotEmpty = cell.value !== '';
+        const isSameValue = cell.value === selectedCell.value;
+        cell.isSibling = isNotEmpty && isSameValue;
     })
 }
