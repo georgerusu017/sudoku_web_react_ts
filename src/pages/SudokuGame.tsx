@@ -57,7 +57,7 @@ export default function SudokuGame() {
          return
       }
 
-      if (selectedCell.value === "") {
+      if (selectedCell.value === '') {
 
          selectedCell.value = value;
          increaseInvalidCount(selectedCell, cells, value)
@@ -74,7 +74,7 @@ export default function SudokuGame() {
          decreaseInvalidCount(selectedCell, cells, value)
          selectedCell.value = value;
          increaseInvalidCount(selectedCell, cells, value)
-
+         
       }
 
       highlightCells(selectedCell, newCells)
@@ -87,6 +87,9 @@ export default function SudokuGame() {
       if (/^[1-9]$/.test(event.key)) {
          handleValueChange(event.key)
 
+      } 
+      else if(event.key === `Delete`){
+         handleValueChange(``)
       } else {
          handleArrowKeyPress(event.key)
       }
@@ -115,6 +118,7 @@ export default function SudokuGame() {
          <ControlBoard
             onNewGameClick={handleNewGame}
             onNumberButtonClick={handleValueChange}
+            onDeleteClick={handleValueChange}
          />
       </div>
    )

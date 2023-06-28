@@ -1,26 +1,41 @@
 import NumberButton from "../NumberButton/NumberButton"
 import "../ControlBoard/ControlBoard.css"
+import { useCallback } from "react"
 
 type ControlBoardProps = {
     onNewGameClick(): void,
-    onNumberButtonClick(value:string): void
+    onNumberButtonClick(value: string): void,
+    onDeleteClick(value: string): void
 }
 
-export default function ControlBoard( {onNewGameClick, onNumberButtonClick} : ControlBoardProps ) {
+export default function ControlBoard({ onNewGameClick, onNumberButtonClick, onDeleteClick }: ControlBoardProps) {
 
     const numberButtons = Array.from({ length: 9 }, (_, index) => index + 1)
+
+    const handleDelete = useCallback(() => {
+
+        onDeleteClick('')
+
+    }, [onDeleteClick])
 
     return (
         <div className="control-board">
             <div className="control-buttons-board">
 
                 <div className="control-div">
-                    <button className="control-button" id="undo-button"></button>
+                    <button
+                        className="control-button"
+                        id="undo-button"
+                    ></button>
                     <label>Undo</label>
                 </div>
 
                 <div className="control-div">
-                    <button className="control-button" id="erase-button"></button>
+                    <button
+                        className="control-button"
+                        id="erase-button"
+                        onClick={handleDelete}
+                    ></button>
                     <label>Erase</label>
                 </div>
 
@@ -36,10 +51,10 @@ export default function ControlBoard( {onNewGameClick, onNumberButtonClick} : Co
             <div className="number-buttons">
 
                 {numberButtons.map((number) => (
-                    <NumberButton 
-                    onClick={onNumberButtonClick} 
-                    key={`number-button${number}`} 
-                    value={number} />
+                    <NumberButton
+                        onClick={onNumberButtonClick}
+                        key={`number-button${number}`}
+                        value={number} />
                 ))}
 
                 <button

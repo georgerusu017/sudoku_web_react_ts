@@ -57,7 +57,7 @@ export function increaseInvalidCount(selectedCell: Cell, cells: Cell[], value: s
     cells.forEach(cell => {
 
         if(neighborIds.includes(cell.id)){
-            if(cell.value === selectedCell.value){
+            if(cell.value === selectedCell.value && cell.value !== ''){
                 cell.validationIndex++
                 selectedCell.validationIndex++
             }
@@ -73,7 +73,7 @@ export function decreaseInvalidCount(selectedCell: Cell, cells: Cell[], value: s
     cells.forEach(cell => {
 
         if(neighborIds.includes(cell.id)){
-            if(cell.value === selectedCell.value){
+            if(cell.value === selectedCell.value && cell.value !== ''){
                 cell.validationIndex--
                 selectedCell.validationIndex--
             }
