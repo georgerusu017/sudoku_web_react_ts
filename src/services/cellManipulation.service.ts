@@ -50,7 +50,7 @@ export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
     return cellId
 }
 
-export function increaseInvalidCount(selectedCell: Cell, cells: Cell[], value: string){
+export function increaseInvalidCount(selectedCell: Cell, cells: Cell[]){
 
     let neighborIds = findNeighbors(selectedCell, cells)
 
@@ -66,7 +66,7 @@ export function increaseInvalidCount(selectedCell: Cell, cells: Cell[], value: s
     })
 }
 
-export function decreaseInvalidCount(selectedCell: Cell, cells: Cell[], value: string){
+export function decreaseInvalidCount(selectedCell: Cell, cells: Cell[]){
 
     let neighborIds = findNeighbors(selectedCell, cells)
 

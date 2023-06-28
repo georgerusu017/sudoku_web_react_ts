@@ -60,21 +60,21 @@ export default function SudokuGame() {
       if (selectedCell.value === '') {
 
          selectedCell.value = value;
-         increaseInvalidCount(selectedCell, cells, value)
+         increaseInvalidCount(selectedCell, cells)
 
       }
       else if (selectedCell.value === value) {
 
-         decreaseInvalidCount(selectedCell, cells, value)
+         decreaseInvalidCount(selectedCell, cells)
          selectedCell.value = '';
 
       }
       else if (selectedCell.value !== value) {
 
-         decreaseInvalidCount(selectedCell, cells, value)
+         decreaseInvalidCount(selectedCell, cells)
          selectedCell.value = value;
-         increaseInvalidCount(selectedCell, cells, value)
-         
+         increaseInvalidCount(selectedCell, cells)
+
       }
 
       highlightCells(selectedCell, newCells)
@@ -82,20 +82,24 @@ export default function SudokuGame() {
 
    }, [cells, selectedCell])
 
+   const handleDelete = useCallback(() => {
+
+      handleValueChange('')
+
+   }, [handleValueChange])
+
    const handleKeyDown = useCallback((event: KeyboardEvent) => {
 
       if (/^[1-9]$/.test(event.key)) {
          handleValueChange(event.key)
-
-      } 
-      else if(event.key === `Delete`){
-         handleValueChange(``)
+      }
+      else if (event.key === 'Delete') {
+         handleDelete()
       } else {
          handleArrowKeyPress(event.key)
       }
 
-   }, [handleArrowKeyPress, handleValueChange])
-
+   }, [handleArrowKeyPress, handleDelete, handleValueChange])
 
    useEffect(() => {
       document.addEventListener("keydown", handleKeyDown)
@@ -109,7 +113,7 @@ export default function SudokuGame() {
 
    return (
       <div className="sudoku-game">
-         <div className='timer-game'>
+         <div className="timer-game">
             <TimeControl onResume={resumeTimer} />
             <GameBoard
                cells={cells}
@@ -118,7 +122,7 @@ export default function SudokuGame() {
          <ControlBoard
             onNewGameClick={handleNewGame}
             onNumberButtonClick={handleValueChange}
-            onDeleteClick={handleValueChange}
+            onDeleteClick={handleDelete}
          />
       </div>
    )
