@@ -1,7 +1,8 @@
 import { useCallback, useState, useEffect } from 'react'
 import './Cell.css'
 import { Cell } from '../../models/Cell.model';
-import { getClassName } from '../../services/getClassName';
+import { getClassName } from '../../services/cellManipulation.service';
+
 type CellProps = {
     cell: Cell,
     onSelectCell(cell: Cell): void,

@@ -5,9 +5,7 @@ import ControlBoard from '../components/ControlBoard/ControlBoard';
 import "../pages/SudokuGame.css"
 import { Cell } from '../models/Cell.model';
 import { generateSudoku } from '../services/sudoku.service';
-import { highlightCells } from '../services/highlightCells';
-import { calculateSelectedCellNewPosition } from '../services/calculateSelectedCellNewPosition';
-import { decreaseInvalidCount, increaseInvalidCount } from '../services/checkValidation';
+import { calculateSelectedCellNewPosition, decreaseInvalidCount, highlightCells, increaseInvalidCount } from '../services/cellManipulation.service';
 
 export default function SudokuGame() {
 
