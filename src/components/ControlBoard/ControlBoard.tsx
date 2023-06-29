@@ -1,7 +1,7 @@
 import NumberButton from "../NumberButton/NumberButton"
 import "../ControlBoard/ControlBoard.css"
 import { useCallback } from "react"
-import { getNotesButtonClassName } from "../../services/layout.service"
+import { getNotesToggleClassName } from "../../services/layout.service"
 
 type ControlBoardProps = {
     onNewGameClick(): void,
@@ -14,6 +14,7 @@ type ControlBoardProps = {
 export default function ControlBoard({ onNewGameClick, onNumberButtonClick, onDeleteClick, onNotesClick, notesToggle }: ControlBoardProps) {
 
     const numberButtons = Array.from({ length: 9 }, (_, index) => index + 1)
+    const notesText = notesToggle ? "ON" : "OFF";
 
     const handleDelete = useCallback(() => {
 
@@ -44,13 +45,13 @@ export default function ControlBoard({ onNewGameClick, onNumberButtonClick, onDe
 
                 <div className="control-div">
                     <button
-                        className={getNotesButtonClassName(notesToggle)}
+                        className="control-button"
                         id="notes-button"
                         onClick={onNotesClick}>
-
                         <div
-                            id="notesToggle">
-                            OFF
+                            id="notesToggle"
+                            className={getNotesToggleClassName(notesToggle)}>
+                            {notesText}
                         </div>
 
                     </button>

@@ -1,10 +1,10 @@
 
 
-export function getNotesButtonClassName(toggle:boolean){
+export function getNotesToggleClassName(toggle:boolean){
 
-    const className: string[] = ['control-button'];
+    const className: string[] = ['notesToggle'];
 
-    toggle && className.push('');
+    toggle && className.push('notes_toggle_selected');
 
     const classNameUnited = className.join(' ');
     return classNameUnited;

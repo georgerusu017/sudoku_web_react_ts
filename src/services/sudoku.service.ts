@@ -46,6 +46,8 @@ export function generateSudoku(): Cell[] {
         .split('')
         .map<Cell>((element, index) => ({
             value: element === '-' ? '' : element,
+            isNote: false,
+            noteValues: [],
             id: index,
             squareId: 99,
             validationIndex: 0,

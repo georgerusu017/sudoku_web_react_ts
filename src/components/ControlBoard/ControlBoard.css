@@ -97,8 +97,8 @@
 }
 
 .notesToggle {
-    /* height: 20px;
-    width: 30px; */
+    height: 20px;
+    width: 30px;
     border-radius: 40%;
     border-width: 0px;
     background-color: rgb(160, 162, 168);
@@ -111,6 +111,10 @@
     top: -10px;
     right: -5px;
 }
+
+.notesToggle.notes_toggle_selected {
+    background-color: #0072e3;
+  }
 
 @media only screen and (max-width: 900px) {
 
