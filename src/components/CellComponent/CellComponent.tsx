@@ -14,11 +14,13 @@ export default function CellComponent({ cell, onSelectCell }: CellProps) {
         onSelectCell(cell)
     }, [cell, onSelectCell])
 
+    const cellContent = cell.isNote ? cell.noteValues.join('') : cell.value;
+
     return (
         <div className={getCellClassName(cell)}
             id={`cell-${cell.id}`}
             onClick={handleClick}>
-            {cell.value}
+            {cellContent}
         </div>
     )
 }

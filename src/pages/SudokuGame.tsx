@@ -53,12 +53,17 @@ export default function SudokuGame() {
    const handleValueChange = useCallback((value: string) => {
 
       const newCells = [...cells];
+      const notesIndex = Number(value) - 1;
 
       if (!selectedCell.isEditable) {
          return
       }
 
-      if (selectedCell.value === '') {
+      if(selectedCell.isNote){
+         selectedCell.noteValues[notesIndex] = value;
+      }
+
+      else if (selectedCell.value === '') {
 
          selectedCell.value = value;
          increaseInvalidCount(selectedCell, cells)
