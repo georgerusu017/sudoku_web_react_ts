@@ -67,6 +67,7 @@
     margin: 20px 10px 10px 10px;
     background-color: rgb(240, 242, 248);
     color: #0072e3;
+    position: relative;
 }
 
 .round-button:hover {
@@ -106,9 +107,9 @@
     flex-direction: column;
     justify-content: center;
     /* Find the position settings */
-    /* position: absolute;
+    position: absolute;
     top: -10px;
-    right: -5px; */
+    right: -5px;
 }
 
 @media only screen and (max-width: 900px) {

@@ -9,7 +9,7 @@ enum Arrow {
 
 export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
 
-    const neighbors:number[] = findLineNeighbors(cell.id);
+    const neighbors: number[] = findLineNeighbors(cell.id);
 
     let cellId = cell.id;
 
@@ -50,31 +50,31 @@ export function calculateSelectedCellNewPosition(cell: Cell, event: string) {
     return cellId
 }
 
-export function increaseInvalidCount(selectedCell: Cell, cells: Cell[]){
+export function increaseInvalidCount(selectedCell: Cell, cells: Cell[]) {
 
     let neighborCells = findNeighbors(selectedCell, cells)
 
     neighborCells.forEach(cell => {
-            if(cell.value === selectedCell.value && cell.value !== ''){
-                cell.validationIndex++
-                selectedCell.validationIndex++
-            }
+        if (cell.value === selectedCell.value && cell.value !== '') {
+            cell.validationIndex++
+            selectedCell.validationIndex++
+        }
     })
 }
 
-export function decreaseInvalidCount(selectedCell: Cell, cells: Cell[]){
+export function decreaseInvalidCount(selectedCell: Cell, cells: Cell[]) {
 
     let neighborCells = findNeighbors(selectedCell, cells)
 
     neighborCells.forEach(cell => {
-            if(cell.value === selectedCell.value && cell.value !== ''){
-                cell.validationIndex--
-                selectedCell.validationIndex--
-            }
+        if (cell.value === selectedCell.value && cell.value !== '') {
+            cell.validationIndex--
+            selectedCell.validationIndex--
+        }
     })
 }
 
-export function getCellClassName(cell:Cell){
+export function getCellClassName(cell: Cell) {
 
     const className: string[] = ['cell'];
 
@@ -107,7 +107,7 @@ export function highlightCells(selectedCell: Cell, cells: Cell[]) {
         cell.isSibling = isNotEmpty && isSameValue;
 
     })
-    
+
     selectedCell.isSelected = true;
 }
 
@@ -175,19 +175,10 @@ function findNeighbors(cell: Cell, cells: Cell[]) {
     neighborIDs.push(...findColumnNeighbors(cell.id))
     neighborIDs.push(...findLineNeighbors(cell.id))
 
-    cells.forEach(squareCell => {
-        if (squareCell.squareId === cell.squareId) {
-            neighborCells.push(squareCell)
-        }
-        if(neighborIDs.includes(squareCell.id)){
-            neighborCells.push(squareCell)
-        }
-    })
+    neighborCells = cells.filter(squareCell => squareCell.id !== cell.id &&
+        (squareCell.squareId === cell.squareId || neighborIDs.includes(squareCell.id)));
 
-    const uniqueNeighbors = Array
-        .from(new Set(neighborCells))
-        .filter(neighborCells => neighborCells.id !== cell.id)
-    ;
-    
+    const uniqueNeighbors = Array.from(new Set(neighborCells));
+
     return uniqueNeighbors
 }

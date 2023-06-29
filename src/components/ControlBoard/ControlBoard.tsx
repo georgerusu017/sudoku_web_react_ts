@@ -48,7 +48,10 @@ export default function ControlBoard({ onNewGameClick, onNumberButtonClick, onDe
                         id="notes-button"
                         onClick={onNotesClick}>
 
-                        <div id="notesToggle">OFF</div>
+                        <div
+                            id="notesToggle">
+                            OFF
+                        </div>
 
                     </button>
                     <label>Notes</label>
