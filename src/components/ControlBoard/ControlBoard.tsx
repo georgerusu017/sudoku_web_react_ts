@@ -5,10 +5,11 @@ import { useCallback } from "react"
 type ControlBoardProps = {
     onNewGameClick(): void,
     onNumberButtonClick(value: string): void,
-    onDeleteClick(value: string): void
+    onDeleteClick(value: string): void,
+    onNotesClick(): void
 }
 
-export default function ControlBoard({ onNewGameClick, onNumberButtonClick, onDeleteClick }: ControlBoardProps) {
+export default function ControlBoard({ onNewGameClick, onNumberButtonClick, onDeleteClick, onNotesClick }: ControlBoardProps) {
 
     const numberButtons = Array.from({ length: 9 }, (_, index) => index + 1)
 
@@ -40,8 +41,13 @@ export default function ControlBoard({ onNewGameClick, onNumberButtonClick, onDe
                 </div>
 
                 <div className="control-div">
-                    <button className="control-button" id="notes-button">
+                    <button
+                        className="control-button"
+                        id="notes-button"
+                        onClick={onNotesClick}>
+
                         <div id="notesToggle">OFF</div>
+                        
                     </button>
                     <label>Notes</label>
                 </div>

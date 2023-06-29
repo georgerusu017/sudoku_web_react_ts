@@ -11,6 +11,7 @@ export default function SudokuGame() {
 
    const [cells, setCells] = useState<Cell[]>(generateSudoku)
    const [selectedCell, setSelectedCell] = useState<Cell>(cells[0])
+   const [notesToggle, setNotesToggle] = useState<boolean>(false)
 
    function resumeTimer() {
       console.log("test")
@@ -110,6 +111,12 @@ export default function SudokuGame() {
 
    }, [handleKeyDown])
 
+   const handleNotesToggle = useCallback(() => {
+
+      setNotesToggle((notesToggle) => !notesToggle)
+      console.log(notesToggle);
+
+   },[notesToggle])
 
    return (
       <div className="sudoku-game">
@@ -123,6 +130,7 @@ export default function SudokuGame() {
             onNewGameClick={handleNewGame}
             onNumberButtonClick={handleValueChange}
             onDeleteClick={handleDelete}
+            onNotesClick={handleNotesToggle}
          />
       </div>
    )
