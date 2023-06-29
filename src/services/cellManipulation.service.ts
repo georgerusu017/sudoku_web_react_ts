@@ -74,19 +74,19 @@ export function decreaseInvalidCount(selectedCell: Cell, cells: Cell[]){
     })
 }
 
-export function getClassName(cell:Cell){
+export function getCellClassName(cell:Cell){
 
-    const className: string[] = ['cell']
+    const className: string[] = ['cell'];
 
-    cell.isSelected && className.push('highlightSelected')
-    cell.isSibling && className.push('highlightSibling')
-    cell.isHighlighted && className.push('highlight')
-    cell.validationIndex && className.push('highlightInvalid')
-    cell.isEditable && className.push('isEditable')
+    cell.isSelected && className.push('highlightSelected');
+    cell.isSibling && className.push('highlightSibling');
+    cell.isHighlighted && className.push('highlight');
+    cell.validationIndex && className.push('highlightInvalid');
+    cell.isEditable && className.push('isEditable');
 
-    const classNameUnited = className.join(' ')
+    const classNameUnited = className.join(' ');
 
-    return classNameUnited
+    return classNameUnited;
 }
 
 export function highlightCells(selectedCell: Cell, cells: Cell[]) {

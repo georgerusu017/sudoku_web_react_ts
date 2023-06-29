@@ -1,15 +1,17 @@
 import NumberButton from "../NumberButton/NumberButton"
 import "../ControlBoard/ControlBoard.css"
 import { useCallback } from "react"
+import { getNotesButtonClassName } from "../../services/layout.service"
 
 type ControlBoardProps = {
     onNewGameClick(): void,
     onNumberButtonClick(value: string): void,
     onDeleteClick(value: string): void,
-    onNotesClick(): void
+    onNotesClick(): void,
+    notesToggle: boolean
 }
 
-export default function ControlBoard({ onNewGameClick, onNumberButtonClick, onDeleteClick, onNotesClick }: ControlBoardProps) {
+export default function ControlBoard({ onNewGameClick, onNumberButtonClick, onDeleteClick, onNotesClick, notesToggle }: ControlBoardProps) {
 
     const numberButtons = Array.from({ length: 9 }, (_, index) => index + 1)
 
@@ -42,12 +44,12 @@ export default function ControlBoard({ onNewGameClick, onNumberButtonClick, onDe
 
                 <div className="control-div">
                     <button
-                        className="control-button"
+                        className={getNotesButtonClassName(notesToggle)}
                         id="notes-button"
                         onClick={onNotesClick}>
 
                         <div id="notesToggle">OFF</div>
-                        
+
                     </button>
                     <label>Notes</label>
                 </div>

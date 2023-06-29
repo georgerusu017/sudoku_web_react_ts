@@ -131,6 +131,7 @@ export default function SudokuGame() {
             onNumberButtonClick={handleValueChange}
             onDeleteClick={handleDelete}
             onNotesClick={handleNotesToggle}
+            notesToggle={notesToggle}
          />
       </div>
    )

@@ -95,9 +95,9 @@
     background-position: center;
 }
 
-#notesToggle {
-    height: 20px;
-    width: 30px;
+.notesToggle {
+    /* height: 20px;
+    width: 30px; */
     border-radius: 40%;
     border-width: 0px;
     background-color: rgb(160, 162, 168);

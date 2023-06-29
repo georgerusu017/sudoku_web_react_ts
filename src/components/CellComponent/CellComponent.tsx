@@ -1,7 +1,7 @@
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback } from 'react'
 import './Cell.css'
 import { Cell } from '../../models/Cell.model';
-import { getClassName } from '../../services/cellManipulation.service';
+import { getCellClassName } from '../../services/cellManipulation.service';
 
 type CellProps = {
     cell: Cell,
@@ -15,7 +15,7 @@ export default function CellComponent({ cell, onSelectCell }: CellProps) {
     }, [cell, onSelectCell])
 
     return (
-        <div className={getClassName(cell)}
+        <div className={getCellClassName(cell)}
             id={`cell-${cell.id}`}
             onClick={handleClick}>
             {cell.value}
