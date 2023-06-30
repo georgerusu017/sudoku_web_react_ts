@@ -14,6 +14,8 @@ export default function CellComponent({ cell, onSelectCell }: CellProps) {
         onSelectCell(cell)
     }, [cell, onSelectCell])
 
+
+    // mutat in Square, si trimis direct cellContent value sau notite
     function getNotesDiv() {
         const notesDivs = []
 
@@ -22,10 +24,14 @@ export default function CellComponent({ cell, onSelectCell }: CellProps) {
         }
         return notesDivs
     }
+    //
 
+    // si verificarea tot in Square
     const cellContent = cell.isNote ? getNotesDiv() : cell.value;
+    //
 
     return (
+        // si className
         <div className={cell.isNote ? getNotesClassName(cell) : getCellClassName(cell)}
             id={`cell-${cell.id}`}
             onClick={handleClick}>

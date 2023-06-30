@@ -13,6 +13,7 @@ export default function Square({ cells , onSelectCell }: SquareProps) {
         <div className="square">
             {
                 cells.map((cell, index) => (
+                    //if isNote CellNotes sau CellValue
                     <CellComponent
                         key={`cell-${index}`}
                         cell={cell}
