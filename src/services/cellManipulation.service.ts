@@ -89,6 +89,18 @@ export function getCellClassName(cell: Cell) {
     return classNameUnited;
 }
 
+export function getNotesClassName(cell: Cell){
+
+    const className: string[] = ['cell'];
+
+    cell.isSelected && className.push('highlightSelected');
+    cell.isHighlighted && className.push('highlight');
+    cell.isEditable && className.push('isEditable');
+
+    const classNameUnited = className.join(' ');
+    return classNameUnited;
+}
+
 export function highlightCells(selectedCell: Cell, cells: Cell[]) {
 
     let neighborCells = findNeighbors(selectedCell, cells)
@@ -96,15 +108,14 @@ export function highlightCells(selectedCell: Cell, cells: Cell[]) {
     cells.forEach(cell => {
         cell.isHighlighted = false;
         cell.isSelected = false;
-        cell.isSibling = false;
+        const isNotEmpty = cell.value !== '';
+        const isSameValue = cell.value === selectedCell.value;
+        cell.isSibling = isNotEmpty && isSameValue;
     })
 
     neighborCells.forEach(cell => {
 
         cell.isHighlighted = true;
-        const isNotEmpty = cell.value !== '';
-        const isSameValue = cell.value === selectedCell.value;
-        cell.isSibling = isNotEmpty && isSameValue;
 
     })
 

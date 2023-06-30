@@ -53,46 +53,73 @@ export default function SudokuGame() {
    const handleValueChange = useCallback((value: string) => {
 
       const newCells = [...cells];
-      const notesIndex = Number(value) - 1;
 
       if (!selectedCell.isEditable) {
          return
       }
 
-      if(selectedCell.isNote){
-         selectedCell.noteValues[notesIndex] = value;
+      if (!notesToggle) {
+
+         selectedCell.isNote = false;
+         selectedCell.noteValues.length = 0;
+
+         if (selectedCell.value === '') {
+
+            selectedCell.value = value;
+            increaseInvalidCount(selectedCell, cells)
+
+         }
+         else if (selectedCell.value === value) {
+
+            decreaseInvalidCount(selectedCell, cells)
+            selectedCell.value = '';
+
+         }
+         else if (selectedCell.value !== value) {
+
+            decreaseInvalidCount(selectedCell, cells)
+            selectedCell.value = value;
+            increaseInvalidCount(selectedCell, cells)
+
+         }
       }
 
-      else if (selectedCell.value === '') {
+      else {
 
-         selectedCell.value = value;
-         increaseInvalidCount(selectedCell, cells)
+         const notesIndex = Number(value) - 1;
 
-      }
-      else if (selectedCell.value === value) {
+         if (selectedCell.value !== ''){
+            decreaseInvalidCount(selectedCell, cells)
+            selectedCell.value = '';
+         }
 
-         decreaseInvalidCount(selectedCell, cells)
-         selectedCell.value = '';
+         selectedCell.isNote = true;
 
-      }
-      else if (selectedCell.value !== value) {
-
-         decreaseInvalidCount(selectedCell, cells)
-         selectedCell.value = value;
-         increaseInvalidCount(selectedCell, cells)
-
+         if (selectedCell.noteValues[notesIndex] === value){
+            selectedCell.noteValues[notesIndex] = '';
+         }
+         else selectedCell.noteValues[notesIndex] = value;
       }
 
       highlightCells(selectedCell, newCells)
       setCells(newCells)
 
-   }, [cells, selectedCell])
+   }, [cells, notesToggle, selectedCell])
+
+   const handleNotesDelete = useCallback(() => {
+
+      if(selectedCell.isNote){
+         selectedCell.noteValues.length = 0;
+      }
+
+   },[selectedCell.isNote, selectedCell.noteValues])
 
    const handleDelete = useCallback(() => {
 
       handleValueChange('')
+      handleNotesDelete()
 
-   }, [handleValueChange])
+   }, [handleNotesDelete, handleValueChange])
 
    const handleKeyDown = useCallback((event: KeyboardEvent) => {
 
@@ -121,7 +148,7 @@ export default function SudokuGame() {
       setNotesToggle((notesToggle) => !notesToggle)
       console.log(notesToggle);
 
-   },[notesToggle])
+   }, [notesToggle])
 
    return (
       <div className="sudoku-game">

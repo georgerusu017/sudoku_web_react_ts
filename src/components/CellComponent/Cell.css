@@ -35,3 +35,17 @@
 .highlightSelected {
   background-color: rgb(194, 221, 248);
 }
+
+.note-cell {
+  font-size: x-small;
+  flex-basis: 33.33%;
+  box-sizing: border-box;
+  min-height: 33.33%;
+}
+
+.note-div {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  flex-wrap: wrap;
+}
