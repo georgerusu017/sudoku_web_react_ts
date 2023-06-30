@@ -29,10 +29,11 @@ export default function SudokuGame() {
 
    const handleNewGame = useCallback(() => {
       const newCells = generateSudoku()
-      highlightCells(newCells[0], newCells)
+      highlightCells(newCells[0], newCells);
+      setNotesToggle(false);
 
-      setCells(newCells)
-      setSelectedCell(newCells[0])
+      setCells(newCells);
+      setSelectedCell(newCells[0]);
    }, [])
 
    useEffect(() => {
