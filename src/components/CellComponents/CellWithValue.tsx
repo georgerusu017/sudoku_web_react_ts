@@ -15,8 +15,7 @@ export default function CellComponent({ cell, onSelectCell }: CellWithValue) {
     }, [cell, onSelectCell])
 
     return (
-        // si className
-        <div className={(cell.noteValues.length > 0) ? getNotesClassName(cell) : getCellClassName(cell)}
+        <div className={getCellClassName(cell)}
             id={`cell-${cell.id}`}
             onClick={handleClick}>
             {cell.value}

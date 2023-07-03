@@ -21,8 +21,7 @@ export default function CellWithNotes({ cell, onSelectCell }: CellWithNotesProps
     }
 
     return (
-        // si className
-        <div className={(cell.noteValues.length > 0) ? getNotesClassName(cell) : getCellClassName(cell)}
+        <div className={getNotesClassName(cell)}
             id={`cell-${cell.id}`}
             onClick={handleClick}>
             {notesDivs}
