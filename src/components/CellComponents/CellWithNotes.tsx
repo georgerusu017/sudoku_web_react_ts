@@ -3,39 +3,29 @@ import './Cell.css'
 import { Cell } from '../../models/Cell.model';
 import { getCellClassName, getNotesClassName } from '../../services/cellManipulation.service';
 
-type CellProps = {
+type CellWithNotesProps = {
     cell: Cell,
     onSelectCell(cell: Cell): void,
 }
 
-export default function CellComponent({ cell, onSelectCell }: CellProps) {
+export default function CellWithNotes({ cell, onSelectCell }: CellWithNotesProps) {
 
     const handleClick = useCallback(() => {
         onSelectCell(cell)
     }, [cell, onSelectCell])
 
+    const notesDivs = []
 
-    // mutat in Square, si trimis direct cellContent value sau notite
-    function getNotesDiv() {
-        const notesDivs = []
-
-        for (let i = 0; i < 9; i++){
-            notesDivs.push(<div className='note-cell'> {cell.noteValues[i]} </div>)
-        }
-        return notesDivs
+    for (let i = 0; i < 9; i++) {
+        notesDivs.push(<div className='note-cell'> {cell.noteValues[i]} </div>)
     }
-    //
-
-    // si verificarea tot in Square
-    const cellContent = (cell.noteValues.length > 0) ? getNotesDiv() : cell.value;
-    //
 
     return (
         // si className
         <div className={(cell.noteValues.length > 0) ? getNotesClassName(cell) : getCellClassName(cell)}
             id={`cell-${cell.id}`}
             onClick={handleClick}>
-            {cellContent}
+            {notesDivs}
         </div>
     )
 }
