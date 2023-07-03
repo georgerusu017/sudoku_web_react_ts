@@ -1,7 +1,5 @@
 export interface Cell {
     value: string,
-    // doar noteValues -> notes, este relevant
-    isNote: boolean,
     noteValues: string[],
     id: number,
     squareId: number,

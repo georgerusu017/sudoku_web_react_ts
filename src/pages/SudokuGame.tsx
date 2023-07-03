@@ -61,7 +61,6 @@ export default function SudokuGame() {
 
       if (!notesToggle) {
 
-         selectedCell.isNote = false;
          selectedCell.noteValues.length = 0;
 
          if (selectedCell.value === '') {
@@ -94,8 +93,6 @@ export default function SudokuGame() {
             selectedCell.value = '';
          }
 
-         selectedCell.isNote = true;
-
          if (selectedCell.noteValues[notesIndex] === value){
             selectedCell.noteValues[notesIndex] = '';
          }
@@ -109,11 +106,11 @@ export default function SudokuGame() {
 
    const handleNotesDelete = useCallback(() => {
 
-      if(selectedCell.isNote){
+      if(selectedCell.noteValues.length > 0){
          selectedCell.noteValues.length = 0;
       }
 
-   },[selectedCell.isNote, selectedCell.noteValues])
+   },[selectedCell.noteValues])
 
    const handleDelete = useCallback(() => {
 

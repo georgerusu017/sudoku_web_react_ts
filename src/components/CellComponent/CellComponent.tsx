@@ -27,12 +27,12 @@ export default function CellComponent({ cell, onSelectCell }: CellProps) {
     //
 
     // si verificarea tot in Square
-    const cellContent = cell.isNote ? getNotesDiv() : cell.value;
+    const cellContent = (cell.noteValues.length > 0) ? getNotesDiv() : cell.value;
     //
 
     return (
         // si className
-        <div className={cell.isNote ? getNotesClassName(cell) : getCellClassName(cell)}
+        <div className={(cell.noteValues.length > 0) ? getNotesClassName(cell) : getCellClassName(cell)}
             id={`cell-${cell.id}`}
             onClick={handleClick}>
             {cellContent}
