@@ -50,7 +50,7 @@ export function generateSudoku(): Cell[] {
             noteValues: [],
             id: index,
             squareId: 99,
-            validationIndex: 0,
+            validationCount: 0,
             isEditable: element === '-',
             isSelected: false,
             isHighlighted: false,

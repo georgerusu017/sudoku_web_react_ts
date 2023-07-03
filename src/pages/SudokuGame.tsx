@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import TimeControl from '../components/TimeControl/TimeControl';
+import TimeControl from '../components/TimeControl/TimeControlFirstTry';
 import GameBoard from '../components/GameBoard/GameBoard';
 import ControlBoard from '../components/ControlBoard/ControlBoard';
 import "../pages/SudokuGame.css"

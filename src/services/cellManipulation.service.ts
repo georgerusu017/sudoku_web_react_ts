@@ -56,8 +56,8 @@ export function increaseInvalidCount(selectedCell: Cell, cells: Cell[]) {
 
     neighborCells.forEach(cell => {
         if (cell.value === selectedCell.value && cell.value !== '') {
-            cell.validationIndex++
-            selectedCell.validationIndex++
+            cell.validationCount++
+            selectedCell.validationCount++
         }
     })
 }
@@ -68,37 +68,10 @@ export function decreaseInvalidCount(selectedCell: Cell, cells: Cell[]) {
 
     neighborCells.forEach(cell => {
         if (cell.value === selectedCell.value && cell.value !== '') {
-            cell.validationIndex--
-            selectedCell.validationIndex--
+            cell.validationCount--
+            selectedCell.validationCount--
         }
     })
-}
-
-export function getCellClassName(cell: Cell) {
-
-    const className: string[] = ['cell'];
-
-    cell.isSelected && className.push('highlightSelected');
-    cell.isSibling && className.push('highlightSibling');
-    cell.isHighlighted && className.push('highlight');
-    cell.validationIndex && className.push('highlightInvalid');
-    cell.isEditable && className.push('isEditable');
-
-    const classNameUnited = className.join(' ');
-
-    return classNameUnited;
-}
-
-export function getNotesClassName(cell: Cell){
-
-    const className: string[] = ['cell'];
-
-    cell.isSelected && className.push('highlightSelected');
-    cell.isHighlighted && className.push('highlight');
-    cell.isEditable && className.push('isEditable');
-
-    const classNameUnited = className.join(' ');
-    return classNameUnited;
 }
 
 export function highlightCells(selectedCell: Cell, cells: Cell[]) {

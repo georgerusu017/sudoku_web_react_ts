@@ -13,16 +13,16 @@ export default function Square({ cells, onSelectCell }: SquareProps) {
     return (
         <div className="square">
             {
-                cells.map((cell, index) => (
+                cells.map((cell) => (
                     (cell.noteValues.length > 0) ?
                         <CellWithNotes
-                            key={`cell-${index}`}
+                            key={cell.id}
                             cell={cell}
                             onSelectCell={onSelectCell}
                         />
                         :
                         <CellWithValue
-                            key={`cell-${index}`}
+                            key={cell.id}
                             cell={cell}
                             onSelectCell={onSelectCell}
                         />

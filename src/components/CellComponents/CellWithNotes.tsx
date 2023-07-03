@@ -1,11 +1,22 @@
 import { useCallback } from 'react'
 import './Cell.css'
 import { Cell } from '../../models/Cell.model';
-import { getCellClassName, getNotesClassName } from '../../services/cellManipulation.service';
 
 type CellWithNotesProps = {
     cell: Cell,
     onSelectCell(cell: Cell): void,
+}
+
+function getNotesClassName(cell: Cell){
+
+    const className: string[] = ['cell'];
+
+    cell.isSelected && className.push('highlightSelected');
+    cell.isHighlighted && className.push('highlight');
+    cell.isEditable && className.push('isEditable');
+
+    const classNameUnited = className.join(' ');
+    return classNameUnited;
 }
 
 export default function CellWithNotes({ cell, onSelectCell }: CellWithNotesProps) {

@@ -3,7 +3,7 @@ export interface Cell {
     noteValues: string[],
     id: number,
     squareId: number,
-    validationIndex: number,
+    validationCount: number,
     isEditable: boolean,
     isSelected: boolean,
     isHighlighted: boolean,
