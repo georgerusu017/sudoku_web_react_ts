@@ -6,12 +6,14 @@ import "../pages/SudokuGame.css"
 import { Cell } from '../models/Cell.model';
 import { generateSudoku } from '../services/sudoku.service';
 import { calculateSelectedCellNewPosition, decreaseInvalidCount, highlightCells, increaseInvalidCount } from '../services/cellManipulation.service';
+import { CellHistory } from '../models/History.model';
 
 export default function SudokuGame() {
 
    const [cells, setCells] = useState<Cell[]>(generateSudoku)
    const [selectedCell, setSelectedCell] = useState<Cell>(cells[0])
    const [notesToggle, setNotesToggle] = useState<boolean>(false)
+   const [history, setHistory] = useState<CellHistory[]>([])
 
    function resumeTimer() {
       console.log("test")
@@ -88,29 +90,42 @@ export default function SudokuGame() {
 
          const notesIndex = Number(value) - 1;
 
-         if (selectedCell.value !== ''){
+         if (selectedCell.value !== '') {
+
             decreaseInvalidCount(selectedCell, cells)
             selectedCell.value = '';
+
          }
 
-         if (selectedCell.noteValues[notesIndex] === value){
+         if (selectedCell.noteValues[notesIndex] === value) {
             selectedCell.noteValues[notesIndex] = '';
          }
          else selectedCell.noteValues[notesIndex] = value;
+
+
       }
+
+      const cellDataToHistory = {
+         value: selectedCell.value, noteValues: [...selectedCell.noteValues], index: cells.indexOf(selectedCell)
+      }
+
+      const newHistory = [...history, cellDataToHistory]
+      setHistory(newHistory)
+
+      console.log("history:", newHistory);
 
       highlightCells(selectedCell, newCells)
       setCells(newCells)
 
-   }, [cells, notesToggle, selectedCell])
+   }, [cells, history, notesToggle, selectedCell])
 
    const handleNotesDelete = useCallback(() => {
 
-      if(selectedCell.noteValues.length > 0){
+      if (selectedCell.noteValues.length > 0) {
          selectedCell.noteValues.length = 0;
       }
 
-   },[selectedCell.noteValues])
+   }, [selectedCell.noteValues])
 
    const handleDelete = useCallback(() => {
 
@@ -118,6 +133,39 @@ export default function SudokuGame() {
       handleNotesDelete()
 
    }, [handleNotesDelete, handleValueChange])
+
+   const handleUndo = useCallback(() => {
+
+      const newCells = [...cells]
+      const lastCell = history.pop()
+
+      if (lastCell !== undefined) {
+
+         decreaseInvalidCount(newCells[lastCell.index], cells)
+         newCells[lastCell.index].value = '';
+         setCells(newCells)
+         
+         handleNotesDelete()
+
+         
+
+         if (lastCell.value) {
+            newCells[lastCell.index].value = lastCell.value
+            increaseInvalidCount(newCells[lastCell.index], cells)
+         }
+
+         else {
+            newCells[lastCell.index].noteValues = lastCell.noteValues
+         }
+
+         setSelectedCell(newCells[lastCell.index])
+         setCells(newCells)
+
+      }
+
+      console.log('hit');
+
+   }, [cells, handleNotesDelete, history])
 
    const handleKeyDown = useCallback((event: KeyboardEvent) => {
 
@@ -159,6 +207,7 @@ export default function SudokuGame() {
          <ControlBoard
             onNewGameClick={handleNewGame}
             onNumberButtonClick={handleValueChange}
+            onUndoClick={handleUndo}
             onDeleteClick={handleDelete}
             onNotesClick={handleNotesToggle}
             notesToggle={notesToggle}
