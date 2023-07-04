@@ -19,6 +19,14 @@ export default function SudokuGame() {
       console.log("test")
    }
 
+   const addToHistory = useCallback(() => {
+      const cellDataToHistory = {
+         value: selectedCell.value, noteValues: [...selectedCell.noteValues], index: cells.indexOf(selectedCell)
+      }
+      const newHistory = [...history, cellDataToHistory]
+      setHistory(newHistory)
+   },[cells, history, selectedCell])      
+
    const handleSelectedCell = useCallback((cell: Cell) => {
 
       const newCells = [...cells]
@@ -56,6 +64,8 @@ export default function SudokuGame() {
    const handleValueChange = useCallback((value: string) => {
 
       const newCells = [...cells];
+
+      addToHistory()
 
       if (!selectedCell.isEditable) {
          return
@@ -105,19 +115,10 @@ export default function SudokuGame() {
 
       }
 
-      const cellDataToHistory = {
-         value: selectedCell.value, noteValues: [...selectedCell.noteValues], index: cells.indexOf(selectedCell)
-      }
-
-      const newHistory = [...history, cellDataToHistory]
-      setHistory(newHistory)
-
-      console.log("history:", newHistory);
-
       highlightCells(selectedCell, newCells)
       setCells(newCells)
 
-   }, [cells, history, notesToggle, selectedCell])
+   }, [addToHistory, cells, notesToggle, selectedCell])
 
    const handleNotesDelete = useCallback(() => {
 
@@ -129,25 +130,24 @@ export default function SudokuGame() {
 
    const handleDelete = useCallback(() => {
 
+      addToHistory()
       handleValueChange('')
       handleNotesDelete()
 
-   }, [handleNotesDelete, handleValueChange])
+   }, [addToHistory, handleNotesDelete, handleValueChange])
 
    const handleUndo = useCallback(() => {
 
       const newCells = [...cells]
       const lastCell = history.pop()
 
-      if (lastCell !== undefined) {
+      if (lastCell) {
 
          decreaseInvalidCount(newCells[lastCell.index], cells)
          newCells[lastCell.index].value = '';
          setCells(newCells)
          
          handleNotesDelete()
-
-         
 
          if (lastCell.value) {
             newCells[lastCell.index].value = lastCell.value
