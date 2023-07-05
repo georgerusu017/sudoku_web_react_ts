@@ -1,11 +1,11 @@
 // import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import "../TimeControl/TimeControl.css"
 
-interface TimeControlProps {
+interface TimeControlFirstTryProps {
    onResume(): void
 }
 
-export default function TimeControl({ onResume }: TimeControlProps) {
+export default function TimeControlFirstTime({ onResume }: TimeControlFirstTryProps) {
 
    // const [startTime, setStartTime] = useState<number | null>(null)
    // const [now, setNow] = useState<number | null>(null);

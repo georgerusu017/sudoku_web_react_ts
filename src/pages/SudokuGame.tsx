@@ -1,5 +1,4 @@
 import React, { useCallback, useEffect, useState } from "react";
-import TimeControl from "../components/TimeControl/TimeControlFirstTry";
 import GameBoard from "../components/GameBoard/GameBoard";
 import ControlBoard from "../components/ControlBoard/ControlBoard";
 import "../pages/SudokuGame.css";
@@ -12,6 +11,7 @@ import {
   increaseInvalidCount,
 } from "../services/cellManipulation.service";
 import { CellHistoryItem } from "../models/History.model";
+import { TimeControl } from "../components/TimeControl/TimeControl";
 
 export default function SudokuGame() {
   const [cells, setCells] = useState<Cell[]>(generateSudoku);
@@ -19,7 +19,7 @@ export default function SudokuGame() {
   const [notesToggle, setNotesToggle] = useState<boolean>(false);
   const [history, setHistory] = useState<CellHistoryItem[]>([]);
 
-  function resumeTimer() {
+  function timerToggle() {
     console.log("test");
   }
 
@@ -49,6 +49,7 @@ export default function SudokuGame() {
 
   const handleNewGame = useCallback(() => {
     const newCells = generateSudoku();
+    setHistory([])
     highlightCells(newCells[0], newCells);
     setNotesToggle(false);
 
@@ -175,7 +176,7 @@ export default function SudokuGame() {
   return (
     <div className="sudoku-game">
       <div className="timer-game">
-        <TimeControl onResume={resumeTimer} />
+        <TimeControl timerToggle={timerToggle} />
         <GameBoard cells={cells} onSelectCell={handleSelectedCell} />
       </div>
       <ControlBoard
