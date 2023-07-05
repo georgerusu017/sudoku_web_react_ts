@@ -52,6 +52,7 @@ export default function SudokuGame() {
     setHistory([])
     highlightCells(newCells[0], newCells);
     setNotesToggle(false);
+    setHistory([])
 
     setCells(newCells);
     setSelectedCell(newCells[0]);
@@ -176,7 +177,7 @@ export default function SudokuGame() {
   return (
     <div className="sudoku-game">
       <div className="timer-game">
-        <TimeControl timerToggle={timerToggle} />
+        <TimeControl onTimerToggle={timerToggle} />
         <GameBoard cells={cells} onSelectCell={handleSelectedCell} />
       </div>
       <ControlBoard

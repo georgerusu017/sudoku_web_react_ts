@@ -1,23 +1,20 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "../TimeControl/TimeControl.css";
 import { Timer } from "../../models/Timer.model";
 
 interface TimeControlProps {
-  timerToggle(): void;
+  onTimerToggle(): void;
 }
 
-export function TimeControl({ timerToggle }: TimeControlProps) {
+export function TimeControl({ onTimerToggle }: TimeControlProps) {
   const [timer, setTimer] = useState<Timer>({ minutes: 0, seconds: 0 });
-  const [timerRunning, setTimerRunning] = useState<boolean>(false);
+  const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false);
   const interval = useRef<ReturnType<typeof setInterval>>();
 
   const handleTimerToggle = useCallback(() => {
-    
-    if (timerRunning) {
+    if (isTimerRunning) {
       clearInterval(interval.current);
-      setTimerRunning(false);
-      console.log("era true");
-      
+      setIsTimerRunning(false);
     } else {
       interval.current = setInterval(() => {
         if (timer.seconds < 59) {
@@ -29,38 +26,26 @@ export function TimeControl({ timerToggle }: TimeControlProps) {
         setTimer({ minutes: timer.minutes, seconds: timer.seconds });
       }, 1000);
 
-      setTimerRunning(true);
-      console.log("era false");
+      setIsTimerRunning(true);
     }
 
-    timerToggle();
-  }, [timer, timerRunning, timerToggle]);
+    onTimerToggle();
+  }, [timer, isTimerRunning, onTimerToggle]);
 
   useEffect(() => {
-    handleTimerToggle()
-  },[])
+    handleTimerToggle();
+  }, []);
 
-  const timerFormat = useCallback(() => {
-    let minutes = "";
-    let seconds = "";
-
-    if (timer.minutes < 10) {
-      minutes = `0${timer.minutes}`;
-    } else {
-      minutes = timer.minutes.toString();
-    }
-    if (timer.seconds < 10) {
-      seconds = `0${timer.seconds}`;
-    } else {
-      seconds = timer.seconds.toString();
-    }
+  const timeString = useMemo(() => {
+    let minutes = timer.minutes.toString().padStart(2, "0");
+    let seconds = timer.seconds.toString().padStart(2, "0");
 
     return `${minutes}:${seconds}`;
   }, [timer.minutes, timer.seconds]);
 
   return (
     <div className="time-control">
-      {timerFormat()}
+      {timeString}
 
       <button className="pause-button" onClick={handleTimerToggle}></button>
     </div>
