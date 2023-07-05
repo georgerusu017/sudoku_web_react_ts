@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import "../TimeControl/TimeControl.css";
 import { Timer } from "../../models/Timer.model";
 
@@ -9,14 +9,17 @@ interface TimeControlProps {
 export function TimeControl({ timerToggle }: TimeControlProps) {
   const [timer, setTimer] = useState<Timer>({ minutes: 0, seconds: 0 });
   const [timerRunning, setTimerRunning] = useState<boolean>(false);
-//   const interval = useRef<number>(0)
+  const interval = useRef<ReturnType<typeof setInterval>>();
 
   const handleTimerToggle = useCallback(() => {
+    
     if (timerRunning) {
-    //   clearInterval(interval.current)
-      setTimerRunning(!timerRunning);
+      clearInterval(interval.current);
+      setTimerRunning(false);
+      console.log("era true");
+      
     } else {
-      setInterval(() => {
+      interval.current = setInterval(() => {
         if (timer.seconds < 59) {
           timer.seconds++;
         } else {
@@ -25,10 +28,17 @@ export function TimeControl({ timerToggle }: TimeControlProps) {
         }
         setTimer({ minutes: timer.minutes, seconds: timer.seconds });
       }, 1000);
+
+      setTimerRunning(true);
+      console.log("era false");
     }
 
     timerToggle();
   }, [timer, timerRunning, timerToggle]);
+
+  useEffect(() => {
+    handleTimerToggle()
+  },[])
 
   const timerFormat = useCallback(() => {
     let minutes = "";
