@@ -17,3 +17,15 @@
   border: none;
   background-color: transparent;
 }
+
+.unpause-button {
+  width: 20px;
+  height: 20px;
+  margin: 0px 5px;
+  background-image: url(/public/images/play-button.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  border: none;
+  background-color: transparent;
+}

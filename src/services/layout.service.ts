@@ -10,3 +10,20 @@ export function getNotesToggleClassName(toggle:boolean){
     return classNameUnited;
 
 }
+
+export function getPauseButtonClassName(toggle:boolean){
+    let className: string = 'unpause-button';
+
+    toggle && (className = 'pause-button');
+
+    return className;
+}
+
+export function getGameBoardClassName(toggle:boolean){
+    let className: string = 'game-board-paused';
+
+    toggle && (className = 'game-board');
+
+    return className;
+}
+
