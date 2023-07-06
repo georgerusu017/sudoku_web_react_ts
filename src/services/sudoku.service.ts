@@ -67,7 +67,7 @@ export function generateDummyCells(): Cell[] {
     dummyCellArray.push({
         value: "",
         noteValues: [],
-        id: 0,
+        id: i,
         squareId: 99,
         validationCount: 0,
         isEditable: false,

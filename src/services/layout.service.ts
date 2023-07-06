@@ -20,9 +20,9 @@ export function getPauseButtonClassName(toggle:boolean){
 }
 
 export function getGameBoardClassName(toggle:boolean){
-    let className: string = 'game-board-paused';
+    let className: string = 'img-paused';
 
-    toggle && (className = 'game-board');
+    toggle && (className = '');
 
     return className;
 }

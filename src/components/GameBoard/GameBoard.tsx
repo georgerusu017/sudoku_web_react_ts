@@ -4,11 +4,17 @@ import { Cell } from "../../models/Cell.model";
 
 type GameBoardProps = {
   cells: Cell[];
-  className: string;
+  backgroundClassName: string;
   onSelectCell(cell: Cell): void;
+  onPlayClick(): void;
 };
 
-export default function GameBoard({ cells, onSelectCell, className }: GameBoardProps) {
+export default function GameBoard({
+  cells,
+  onSelectCell,
+  backgroundClassName,
+  onPlayClick,
+}: GameBoardProps) {
   const squares: Cell[][] = [];
 
   for (let i = 0; i < 9; i++) {
@@ -20,14 +26,18 @@ export default function GameBoard({ cells, onSelectCell, className }: GameBoardP
   }
 
   return (
-    <div className={className}>
-      {squares.map((squareCells, index) => (
-        <Square
-          key={`square-${index}`}
-          cells={squareCells}
-          onSelectCell={onSelectCell}
-        />
-      ))}
-    </div>
+    <>
+      <div className="game-board">
+        {squares.map((squareCells, index) => (
+          <Square
+            key={`square-${index}`}
+            cells={squareCells}
+            onSelectCell={onSelectCell}
+          />
+        ))}
+        <div className={backgroundClassName} onClick={onPlayClick}>
+        </div>
+      </div>
+    </>
   );
 }

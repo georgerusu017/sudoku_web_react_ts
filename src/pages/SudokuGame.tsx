@@ -59,17 +59,23 @@ export default function SudokuGame() {
 
   const handleSelectedCell = useCallback(
     (cell: Cell) => {
+      if (!isTimerRunning) {
+        setIsTimerRunning(true);
+        return;
+      }
       const newCells = [...cells];
 
       highlightCells(cell, newCells);
       setSelectedCell(cell);
       setCells(newCells);
     },
-    [cells]
+    [cells, isTimerRunning]
   );
 
   const handleNewGame = useCallback(() => {
     const newCells = generateSudoku();
+    setTimer({minutes: 0, seconds: 0})
+    setIsTimerRunning(true)
     setHistory([]);
     highlightCells(newCells[0], newCells);
     setNotesToggle(false);
@@ -223,7 +229,10 @@ export default function SudokuGame() {
           timer={timer}
           isTimerRunning={isTimerRunning}
         />
-        <GameBoard cells={isTimerRunning ? cells : dummyCells} onSelectCell={handleSelectedCell} className={getGameBoardClassName(isTimerRunning)}/>
+        <GameBoard cells={isTimerRunning ? cells : dummyCells} 
+        onSelectCell={handleSelectedCell} 
+        backgroundClassName={getGameBoardClassName(isTimerRunning)}
+        onPlayClick={timerToggle}/>
       </div>
       <ControlBoard
         onNewGameClick={handleNewGame}
