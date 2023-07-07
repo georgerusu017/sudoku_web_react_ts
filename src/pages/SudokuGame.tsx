@@ -232,7 +232,8 @@ export default function SudokuGame() {
         <GameBoard cells={isTimerRunning ? cells : dummyCells} 
         onSelectCell={handleSelectedCell} 
         backgroundClassName={getGameBoardClassName(isTimerRunning)}
-        onPlayClick={timerToggle}/>
+        onPlayClick={timerToggle}
+        isTimerRunning={isTimerRunning}/>
       </div>
       <ControlBoard
         onNewGameClick={handleNewGame}

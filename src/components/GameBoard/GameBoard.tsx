@@ -5,14 +5,16 @@ import { Cell } from "../../models/Cell.model";
 type GameBoardProps = {
   cells: Cell[];
   backgroundClassName: string;
+  isTimerRunning: boolean;
   onSelectCell(cell: Cell): void;
   onPlayClick(): void;
 };
 
 export default function GameBoard({
   cells,
-  onSelectCell,
   backgroundClassName,
+  isTimerRunning,
+  onSelectCell,
   onPlayClick,
 }: GameBoardProps) {
   const squares: Cell[][] = [];
@@ -35,8 +37,9 @@ export default function GameBoard({
             onSelectCell={onSelectCell}
           />
         ))}
-        <div className={backgroundClassName} onClick={onPlayClick}>
-        </div>
+        {!isTimerRunning ? (
+          <div className={backgroundClassName} onClick={onPlayClick}></div>
+        ) : null}
       </div>
     </>
   );
